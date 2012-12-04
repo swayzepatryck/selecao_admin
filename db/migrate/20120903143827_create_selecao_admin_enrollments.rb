@@ -10,6 +10,7 @@ class CreateSelecaoAdminEnrollments < ActiveRecord::Migration
       t.datetime :start_time
       t.datetime :end_time
       t.integer :number_of_vacancies
+      t.belongs_to :online_lecture
       t.belongs_to :online_lecture_type
 
       t.timestamps
