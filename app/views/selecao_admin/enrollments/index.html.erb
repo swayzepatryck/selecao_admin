@@ -1,0 +1,55 @@
+<%- model_class = SelecaoAdmin::Enrollment -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %> - <%= SelecaoAdmin::Announcement.find(params[:announcement_id]).title %></h1>
+</div>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_announcement_enrollment_path(params[:announcement_id]),
+            :class => 'btn btn-primary' %>
+<hr>
+
+<table class="table table-striped" id="enrollmentAjaxTable">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:announcement_id) %></th>
+      <th><%= model_class.human_attribute_name(:course_id) %></th>
+      <th><%= model_class.human_attribute_name(:campus_id) %></th>
+      <th><%= model_class.human_attribute_name(:entry_process_id) %></th>
+      <th><%= model_class.human_attribute_name(:start_date) %></th>
+      <th><%= model_class.human_attribute_name(:end_date) %></th>
+      <th><%= model_class.human_attribute_name(:number_of_vacancies) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @enrollments.each do |enrollment| %>
+      <tr id="tr_<%=enrollment.id%>">
+        <td><%= link_to enrollment.id, announcement_enrollment_path(enrollment.announcement,enrollment) %></td>
+        <td><%= link_to enrollment.announcement.title, announcement_path(enrollment.announcement.id) %></td>
+        <td><%= link_to enrollment.course.name, course_path(enrollment.course.id) %></td>
+        <td><%= link_to enrollment.course.campus.name, course_path(enrollment.course.campus.name) %></td>
+        <td><%= link_to enrollment.entry_process.name, entry_process_path(enrollment.entry_process.id) %></td>
+        <td><%=l enrollment.start_date %></td>
+        <td><%=l enrollment.end_date %></td>
+        <td><%= enrollment.number_of_vacancies %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_announcement_enrollment_path(enrollment.announcement, enrollment), :class => 'btn btn-mini' %>
+  			  <%= link_to_if(any_restrict_dependecy?(enrollment), t('.destroy', :default => t("helpers.links.destroy")), "#", :class => "btn btn-mini btn-danger", :rel => "popover", :"data-content" => t("validation.restrict_validation", :dependecie_models => any_restrict_dependecy?(enrollment)), :"data-original-title" => t("selecao_admin.general.atention")) {%>										
+ 						<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      announcement_enrollment_path(enrollment.announcement, enrollment),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger',
+ 											:remote => true%>
+					<%}%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= render :partial => 'selecao_admin/sidebars/announcement_enrollment' %>
+	
+

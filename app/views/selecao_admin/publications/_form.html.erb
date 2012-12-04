@@ -1,0 +1,27 @@
+<%= form_for @publication, :html => { :class => 'form-horizontal' } do |f| %>
+  
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'text_field span10' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :publication_text, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :publication_text, :class => 'text_area span10' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :publication_category_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :publication_category_id, SelecaoAdmin::PublicationCategory.all, :id, :title, {:prompt => true}%>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                publications_path, :class => 'btn' %>
+  </div>
+<% end %>

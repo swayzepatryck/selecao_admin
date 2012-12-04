@@ -1,0 +1,29 @@
+<%- model_class = SelecaoAdmin::Survey -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+  <dd><%= @survey.title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:survey_code) %>:</strong></dt>
+  <dd><%= @survey.survey_code %></dd>
+	<hr>
+	<h4>Perguntas e opções:</h4>
+	<%@survey.survey_questions.each{|sq|%><h3><%="#{sq.sequence_number} - #{sq.question}"%></h3><%sq.survey_question_options.each{|o|%><h5><%=o.option%></h5><%}%><br/> <%}%>
+
+
+	
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              surveys_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_survey_path(@survey), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              survey_path(@survey),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>

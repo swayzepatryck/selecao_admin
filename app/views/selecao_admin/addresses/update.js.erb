@@ -1,0 +1,8 @@
+<%- if @address.errors.any? %>
+  $('#editAddressModal').html('<%= escape_javascript(render('form')) %>');
+<%- else %>
+  $('#editAddressModal').modal('hide');
+  $('#tr_<%=@address.id.to_s%>').remove();
+  $('#editAddressModal').remove();	
+  $('#addressAjaxTable').append('<%= escape_javascript(render(@address)) %>');	
+<%- end %>

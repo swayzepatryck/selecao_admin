@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  publication_date: 2012-08-31
+  publication_time: 2012-08-31 14:25:11
+  enrollment: 
+
+two:
+  publication_date: 2012-08-31
+  publication_time: 2012-08-31 14:25:11
+  enrollment: 

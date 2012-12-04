@@ -1,0 +1,29 @@
+<%= form_for(@survey_question_option) do |f| %>
+  <% if @survey_question_option.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@survey_question_option.errors.count, "error") %> prohibited this survey_question_option from being saved:</h2>
+
+      <ul>
+      <% @survey_question_option.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :survey_question %><br />
+    <%= f.text_field :survey_question %>
+  </div>
+  <div class="field">
+    <%= f.label :option %><br />
+    <%= f.text_field :option %>
+  </div>
+  <div class="field">
+    <%= f.label :is_others %><br />
+    <%= f.check_box :is_others %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

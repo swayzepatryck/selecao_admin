@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  phone_type: 
+  prefix: MyString
+  suffix: MyString
+  resource_id: 1
+  resource_type: MyString
+
+two:
+  phone_type: 
+  prefix: MyString
+  suffix: MyString
+  resource_id: 1
+  resource_type: MyString

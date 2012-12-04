@@ -1,0 +1,1 @@
+has_one :enrolled, :dependent => :destroy, :class_name => 'SelecaoAdmin::Enrolled'

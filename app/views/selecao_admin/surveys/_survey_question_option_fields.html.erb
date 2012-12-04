@@ -1,0 +1,19 @@
+<fieldset class="qo_fieldset">	
+	<h5><%= action_name == 'edit' ? "#{f.object.option}" : 'Nova Opção'%></h5>
+	<hr>	
+	<div class="control-group">
+    <%= f.label :sequence_number, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :sequence_number, :class => 'text_field span1' %>
+    </div>
+  </div>	  			
+	
+	<div class="control-group">
+    <%= f.label :option, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :option, :class => 'text_field span8' %>
+    </div>
+  </div>
+	<%= f.hidden_field :_destroy %>
+	<%= link_to t("selecao_admin.general.remove_survey_question_option"), '#', :class => "remove_fields pull-right" %>
+</fieldset><br/>

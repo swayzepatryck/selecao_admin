@@ -1,0 +1,29 @@
+<h1>Listing enrolled_survey_answers</h1>
+
+<table>
+  <tr>
+    <th>Survey question option</th>
+    <th>Enrolled</th>
+    <th>Other option</th>
+    <th>Enrollment</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @enrolled_survey_answers.each do |enrolled_survey_answer| %>
+  <tr>
+    <td><%= enrolled_survey_answer.survey_question_option %></td>
+    <td><%= enrolled_survey_answer.enrolled %></td>
+    <td><%= enrolled_survey_answer.other_option %></td>
+    <td><%= enrolled_survey_answer.enrollment %></td>
+    <td><%= link_to 'Show', enrolled_survey_answer %></td>
+    <td><%= link_to 'Edit', edit_enrolled_survey_answer_path(enrolled_survey_answer) %></td>
+    <td><%= link_to 'Destroy', enrolled_survey_answer, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Enrolled survey answer', new_enrolled_survey_answer_path %>

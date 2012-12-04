@@ -1,0 +1,19 @@
+<% if @student_quotas %>
+	<% @student_quotas.each do |sq| %>
+		<div class="control-group">
+		  <%= label_tag :student_quota_id, sq.abbreviation, :class => 'control-label' %>
+		  <div class="controls">
+			<% if request.referrer.include?('edit')  %>					
+				<% drawing_student_quota = SelecaoAdmin::DrawingStudentQuota.where(:drawing_id => sq.drawings.first.id).where(:student_quota_id => sq.id).first %>									
+				<%= hidden_field_tag "drawing_student_quotas_attributes[#{drawing_student_quota.id}][student_quota_id]", sq.id, :value => sq.id %>
+				<%= text_field_tag "drawing_student_quotas_attributes[#{drawing_student_quota.id}][number_of_vacancies]", drawing_student_quota.number_of_vacancies %>				
+			<% else %>
+				<%= hidden_field_tag "drawing[drawing_student_quotas_attributes][#{sq.object_id}][student_quota_id]", sq.id, :value => sq.id %>
+				<%= text_field_tag "drawing[drawing_student_quotas_attributes][#{sq.object_id}][number_of_vacancies]" %>				
+			<% end %>
+		  </div>
+		</div>		
+	<% end %>
+<% end %>
+
+

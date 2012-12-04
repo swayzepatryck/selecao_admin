@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  drawing: 
+  student_quota: 
+  number_of_vacancies: 1
+
+two:
+  drawing: 
+  student_quota: 
+  number_of_vacancies: 1

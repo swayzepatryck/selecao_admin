@@ -1,0 +1,58 @@
+<%= form_for @lecture, :html => { :class => 'form-horizontal' } do |f| %>
+	<div class="control-group">
+		<%= f.label :announcement, :class => 'control-label' %>
+		<div class="controls">
+		  <%= f.collection_select :announcement_id, SelecaoAdmin::Announcement.all, :id, :title, :prompt => true, :class => 'span6' %>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<%= f.label :campus, :class => 'control-label' %>
+		<div class="controls">
+		  <%= f.collection_select :campus_id, SelecaoAdmin::Campus.all, :id, :name, :prompt => true %>
+		</div>
+	</div>
+
+	<div class="control-group">				
+			<%= f.label :lecture_type_id, :class => 'control-label' %>
+			<div class="controls">		
+				<%= f.collection_select :lecture_type_id, SelecaoAdmin::LectureType.order(:title), :id, :title, :prompt => true %>
+			</div>
+			<%if !@lecture.lecture_type_id.blank? %>
+				<script type="text/javascript" charset="utf-8">
+					$(function() {
+						if ($("#lecture_lecture_type_id").val() == '1') {
+							jQuery("#online_lecture").hide();
+						  jQuery("#attendance_lecture").show();
+						} else if ($("#lecture_lecture_type_id").val() == '2') {
+							jQuery("#online_lecture").show();
+						  jQuery("#attendance_lecture").hide();
+						}						
+					});		
+				</script>
+			<% end %>			
+  </div>
+
+	
+	<div class="control-group">
+		<%= f.label :title, :class => 'control-label' %>
+		<div class="controls">
+		  <%= f.text_field :title, :class => 'text_field span8' %>
+		</div>
+	</div>
+	
+	<div id="online_lecture">
+			<%= render :partial => 'online_lecture_form', :locals => {:f => f} %>
+	</div>					
+	
+	<div id="attendance_lecture">
+		<%= render :partial => 'attendance_lecture_form', :locals => {:f => f} %>
+	</div>			
+	
+	<div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+               lectures_path, :class => 'btn' %>
+  </div>
+  	
+<% end %>						

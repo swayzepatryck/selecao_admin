@@ -1,0 +1,27 @@
+<h1>Listing survey_question_options</h1>
+
+<table>
+  <tr>
+    <th>Survey question</th>
+    <th>Option</th>
+    <th>Is others</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @survey_question_options.each do |survey_question_option| %>
+  <tr>
+    <td><%= survey_question_option.survey_question %></td>
+    <td><%= survey_question_option.option %></td>
+    <td><%= survey_question_option.is_others %></td>
+    <td><%= link_to 'Show', survey_question_option %></td>
+    <td><%= link_to 'Edit', edit_survey_question_option_path(survey_question_option) %></td>
+    <td><%= link_to 'Destroy', survey_question_option, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Survey question option', new_survey_question_option_path %>

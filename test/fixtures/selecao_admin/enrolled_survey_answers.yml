@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  survey_question_option: 
+  enrolled: 
+  other_option: MyString
+  enrollment: 
+
+two:
+  survey_question_option: 
+  enrolled: 
+  other_option: MyString
+  enrollment: 

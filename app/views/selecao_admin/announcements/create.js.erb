@@ -1,0 +1,16 @@
+<%- if @announcement.errors.any? %>
+  console.log('Error');
+  $('#newAnnouncementModal').html('<%= escape_javascript(render('form')) %>');
+<%- else %>
+  console.log('Created');
+  $('#newAnnouncementModal').modal('hide');
+	var addId = $('#announcementAjaxTable').dataTable().fnAddData( [
+		"<%=escape_javascript(link_to @announcement.id, announcement_path(@announcement))%>",
+		"<%=escape_javascript(link_to @announcement.title, announcement_path(@announcement))%>",
+		"<%=l @announcement.publication_date%>",
+		"<%=l @announcement.created_at%>",
+		"<%=escape_javascript(link_to t('.edit', :default => t('helpers.links.edit')), edit_announcement_path(@announcement), :class => 'btn btn-mini')%>" + "<%=escape_javascript(link_to t('.destroy', :default => t('helpers.links.destroy')), announcement_path(@announcement), :method => :delete, :class => 'btn btn-mini btn-danger', :confirm => t('.confirm', :default => t('helpers.links.confirm', :default => 'Are you sure?')), :remote => true)%>"		
+	]);	
+ 	var theNode = $('#announcementAjaxTable').dataTable().fnSettings().aoData[addId[0]].nTr;
+	$(theNode).attr("id", "tr_<%=@announcement.id%>");		
+<%- end %>

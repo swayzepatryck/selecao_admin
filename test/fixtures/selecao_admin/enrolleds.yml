@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  birth_date: 2012-08-31
+  genre: 
+  marital_status: 
+  id_card_number: MyString
+  id_card_issuer: MyString
+  fathers_name: MyString
+  mothers_name: MyString
+
+two:
+  birth_date: 2012-08-31
+  genre: 
+  marital_status: 
+  id_card_number: MyString
+  id_card_issuer: MyString
+  fathers_name: MyString
+  mothers_name: MyString

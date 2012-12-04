@@ -1,0 +1,9 @@
+$("#main").before("<%= escape_javascript(render 'edit', :formats => [:html]) %>");
+$("#editScoreEvaluationModal").modal({
+	show: true,
+	backdrop: true,
+	keyboard: true	
+}).on('hidden', function () {
+		$('#editScoreEvaluationModal').remove();
+});
+

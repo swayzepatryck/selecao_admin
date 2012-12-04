@@ -1,0 +1,27 @@
+<h1>Listing enrolled_scores</h1>
+
+<table>
+  <tr>
+    <th>Enrolled</th>
+    <th>Discipline</th>
+    <th>Score</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @enrolled_scores.each do |enrolled_score| %>
+  <tr>
+    <td><%= enrolled_score.enrolled %></td>
+    <td><%= enrolled_score.discipline %></td>
+    <td><%= enrolled_score.score %></td>
+    <td><%= link_to 'Show', enrolled_score %></td>
+    <td><%= link_to 'Edit', edit_enrolled_score_path(enrolled_score) %></td>
+    <td><%= link_to 'Destroy', enrolled_score, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Enrolled score', new_enrolled_score_path %>

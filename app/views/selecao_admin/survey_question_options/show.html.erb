@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Survey question:</b>
+  <%= @survey_question_option.survey_question %>
+</p>
+
+<p>
+  <b>Option:</b>
+  <%= @survey_question_option.option %>
+</p>
+
+<p>
+  <b>Is others:</b>
+  <%= @survey_question_option.is_others %>
+</p>
+
+
+<%= link_to 'Edit', edit_survey_question_option_path(@survey_question_option) %> |
+<%= link_to 'Back', survey_question_options_path %>

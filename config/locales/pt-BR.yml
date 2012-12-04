@@ -1,0 +1,228 @@
+pt-BR:
+  selecao_admin:
+    button:
+      lecture_presence:
+        check_presence: "Presente"
+        uncheck_presence: "Ausente"
+    general:
+      website_name: "Seleção Admin"
+      atention: "Atenção:"
+      saving_tag: "Salvando..."
+      add_address: "Adicionar endereço"
+      add_another_address: "Adicionar outro endereço"
+      remove_address: "Remover este endereço"
+      add_phone: "Adicionar telefone"
+      add_another_phone: "Adicionar outro telefone"
+      remove_phone: "Remover este telefone"
+      add_survey_question: "Adicionar pergunta"
+      remove_survey_question: "Remover esta pergunta"
+      add_survey_question_option: "Adicionar opção"
+      add_course_prerequisite: "Adicionar Pré-requisito"
+      remove_course_prerequisite: "Remover este Pré-requisito"
+      add_student_quota: "Adicionar reserva de vaga"
+      remove_student_quota: "Remover reserva de vaga"
+      remove_survey_question_option: "Remover esta opção"
+      add_online_lecture_code: "Adicionar código"
+      remove_online_lecture_code: "Remover código"
+      remove: "Remover"
+      showing_student_quota_vacancie_numbers_by_drawing: %{vacancie_number} vaga(s) - %{student_quota}
+      not_registered: "Não registrado"
+      transfer_left_vacancy__transfer: "Transferir "
+      transfer_left_vacancy__to: " vaga(s) remanescente para"
+      no_left_vacancies: "Sem vagas remanescentes."
+      transfer: "Transferir"
+    flash_messages:
+      successfully_created: %{model} criado com sucesso!
+      successfully_updated: %{model} atualizado(a) com sucesso!     
+      
+  will_paginate:
+    previous_label: "&#8592; Anterior"
+    next_label: "Próxima &#8594;"
+    page_gap: "&hellip;"  
+    
+  validation:
+    lecture:
+      blank_online_lecture_codes: "Selecione pelo menos um codigo para a palestra."
+    restrict_validation: "Impossível excluir. Há dependências vinculadas a este objeto. Por favor verifique em: %{dependecie_models}."
+    enrollment:
+      start_date_bigger_than_end_date: "Data de início de inscrições maior que data final."
+    entry_process:
+      blank_student_quotas: "selecione pelo menos uma reserva de vaga."
+      blank_score_evaluation: "selecione pelo menos uma avaliação."
+      blank_student_quota: "selecione pelo menos uma reserva de vaga."
+      score_evaluation_xor_student_quota: "Desmarque as reservas de vaga deste processo para continuar esta operação."
+      student_quota_xor_score_evaluation: "Desmarque as avaliações deste processo para continuar esta operação."
+    enrolled:
+      existing_enrolled: "candidato existente."
+    chosen:
+      text_multiple: "Selecione uma(s) opção(ões)"
+      text_single: "Selecione uma opção"
+      no_results_match: "Nenhum resultado encontrado com"
+    drawing_student_quota: 
+      blank_number_of_vacancies: "Preencha a quantidade de vagas para todos as reservas."
+    
+  confirmation:
+    survey:
+      destroy_with_dependecies_warning: "Ao concluir esta operação todos as questoes e opções relacionadas a esta pesquisa serão apagadas. Deseja continuar?"
+  
+  activerecord:
+    errors:
+      <<: *errors
+    models: 
+      selecao_admin/announcement: "Edital"  
+      selecao_admin/publication: "Publicação"
+      selecao_admin/publication_category: "Categoria de Publicação"
+      selecao_admin/enrollment: "Inscrição"
+      selecao_admin/course: "Curso"
+      selecao_admin/entry_process: "Processo Seletivo"
+      selecao_admin/score_evaluation: "Avaliações"
+      selecao_admin/discipline: "Disciplina"      
+      selecao_admin/survey: "Pesquisa"            
+      selecao_admin/lecture: "Palestra"
+      selecao_admin/drawing: "Sorteio"            
+      selecao_admin/student_quota: "Reserva de Vaga"                  
+      selecao_admin/campus: "Campus"
+      selecao_admin/address: "Endereço"
+      selecao_admin/phone: "Telefone"
+      selecao_admin/survey_question: "Pergunta"
+      selecao_admin/enrolled: "Candidato"
+      selecao_admin/lecture_presence: "Presença em Palestra"
+      selecao_admin/enrollment_enrolled: "Inscrito"
+      selecao_admin/drawing_enrolled: "Sorteados"
+    attributes:
+      selecao_admin/online_lecture_code:
+        code_sequence: "Sequência"
+        code: "Código"
+      selecao_admin/course_prerequisite:
+        title: "Título"
+        description: "Descrição"
+      selecao_admin/drawing:
+        publication_date: "Data de publicação"
+        publication_time: "Hora da publicação"
+        enrollment_id: "Inscrição"
+        employee_id: "Responsável"
+        student_quotas: "Reservas de vaga"
+        number_of_vacancies: "Número de vagas por reserva"
+        raffle_time: "Hora do Sorteio"
+        raffle_date: "Data do Sorteio"
+      selecao_admin/enrolled:
+        birth_date: "Data de nascimento"
+        genre_id: "Sexo"
+        marital_status_id: "Estado Civil"
+        id_card_number: "RG"
+        id_card_issuer: "Emissor"
+        fathers_name: "Nome do pai"
+        mothers_name: "Nome da mae"
+        addresses: "Endereços"
+        phones: "Telefones"
+        user_name: "Usuário Integra"
+        name: "Nome"
+        unique_id: "CPF"
+        student_quota_id: "Quota"
+        phones: "Telefones"
+        position: "Posição"
+      selecao_admin/address:
+        address_type_id: "Tipo"
+        street: "Rua"
+        number: "Número"
+        complement: "Complemento"
+        neighborhood: "Bairro"
+        city_id: "Cidade"
+        state_id: "Estado"
+        postal_code: "Código Postal"
+        reference_point: "Ponto de Referência"
+      selecao_admin/survey_question:
+        question: "Pergunta"
+        sequence_number: "Nº Sequencial"
+      selecao_admin/survey_question_option:
+        option: "Opção"
+        sequence_number: "Nº Sequencial"
+      selecao_admin/phone:
+        phone_type_id: "Tipo"
+        prefix: "Prefixo"
+        suffix: "Sufixo"
+      selecao_admin/campus:
+        name: "Nome"
+        addresses: "Endereços"
+        phones: "Telefones"
+      selecao_admin/student_quota:
+        title: "Título"
+        abbreviation: "Abreviação"   
+        active: "Ativo?"     
+      selecao_admin/lecture:
+        title: "Título"
+        video_url: "Endereço do Vídeo"    
+        lecture_type_id: "Tipo de palestra"
+        lecture_date: "Data"
+        lecture_time: "Hora"
+        max_capacity: "Capacidade"
+        location: "Local"
+        online_lecture_codes: "Codigos de palestra"
+        announcement: "Edital"
+      selecao_admin/survey:
+        title: "Título"
+        survey_code: "Código"
+        created_at: "Registro criado em"
+        updated_at: "Registro atualizado em"          
+      selecao_admin/announcement:
+        title: "Título"
+        publication_date: "Data de publicação"
+        created_at: "Criado em"
+      selecao_admin/publication:
+        title: "Título"
+        publication_text: "Texto"
+        publication_category_id: "Categoria"
+        created_at: "Criado em"
+      selecao_admin/publication_category:
+        title: "Título"
+      selecao_admin/enrollment: 
+        announcement_id: "Edital"
+        course_id: "Curso"
+        entry_process: "Processo Seletivo"
+        start_date: "Abertura das Inscrições"
+        end_date: "Encerramento das Inscrições"
+        start_time: "Hora da abertura"
+        end_time: "Hora do encerramento"
+        number_of_vacancies: "Número de vagas"
+        lecture: "Palestra online"
+        created_at: "Registro criado em"
+        updated_at: "Registro atualizado em"
+        survey_id: "Pesquisa"
+        entry_process_id: "Processo Seletivo"
+        lecture_id: "Palestra"
+        student_quotas: "Reservas de vagas"
+        score_evaluations: "Avaliações"
+        lecture_type: Tipo de palestra
+      selecao_admin/course:
+        name: "Nome"
+        course_code: "Código"
+        description: "Descrição"
+        course_shift_id: "Turno"
+        campus_id: "Campus"
+        course_situation_id: "Situação"
+        info_link: "Informações Gerais"
+        created_at: "Registro criado em"
+        updated_at: "Registro atualizado em"     
+        course_prerequisites: "Pré-requisitos"  
+        goal: "Objetivo"
+        online_lecture_id: "Palestra online"
+      selecao_admin/entry_process:
+        name: "Nome"
+        entry_process_mode_id: "Modo do Processo Seletivo"
+        created_at: "Registro criado em"
+        updated_at: "Registro atualizado em"  
+        student_quotas: "Reservas de Vaga"
+        score_evaluations: "Avaliações"
+        online_lecture: "Palestra Online"
+      selecao_admin/score_evaluation:
+        title: "Título"
+        created_at: "Registro criado em"
+        updated_at: "Registro atualizado em"
+        disciplines: "Disciplinas"
+      selecao_admin/discipline:
+        name: "Nome"        
+        created_at: "Registro criado em"
+        updated_at: "Registro atualizado em"  
+             
+        
+      

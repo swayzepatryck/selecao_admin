@@ -1,0 +1,25 @@
+<h1>Listing online_lecture_codes</h1>
+
+<table>
+  <tr>
+    <th>Code</th>
+    <th>Online lecture</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @online_lecture_codes.each do |online_lecture_code| %>
+  <tr>
+    <td><%= online_lecture_code.code %></td>
+    <td><%= online_lecture_code.online_lecture %></td>
+    <td><%= link_to 'Show', online_lecture_code %></td>
+    <td><%= link_to 'Edit', edit_online_lecture_code_path(online_lecture_code) %></td>
+    <td><%= link_to 'Destroy', online_lecture_code, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Online lecture code', new_online_lecture_code_path %>

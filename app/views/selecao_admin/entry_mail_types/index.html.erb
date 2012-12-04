@@ -1,0 +1,25 @@
+<h1>Listing entry_mail_types</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Mail text</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @entry_mail_types.each do |entry_mail_type| %>
+  <tr>
+    <td><%= entry_mail_type.title %></td>
+    <td><%= entry_mail_type.mail_text %></td>
+    <td><%= link_to 'Show', entry_mail_type %></td>
+    <td><%= link_to 'Edit', edit_entry_mail_type_path(entry_mail_type) %></td>
+    <td><%= link_to 'Destroy', entry_mail_type, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Entry mail type', new_entry_mail_type_path %>

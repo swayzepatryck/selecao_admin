@@ -1,0 +1,62 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require dataTables/jquery.dataTables.bootstrap
+ *= require chosen
+ *= require select2
+ *= require validationEngine.jquery
+ *= require_self
+ *= require_tree .
+*/
+
+label.message {
+    background-color: #f2dede;
+    border-radius: 3px 3px 3px 3px;
+    padding: 5px;
+    color: #b94a65;
+    font-size: 10.998px;
+    font-weight: bold;
+    line-height: 14px;
+    vertical-align: baseline;
+    white-space: nowrap;
+	margin-top: 10px;
+	display: table;
+}
+
+.parent_fieldset {
+	background-color: #dddddd;
+}
+
+.dataTables_processing {
+	border-radius: 5px;
+	position: absolute;
+	top: 25%;
+	left: 50%;
+	width: 100px;
+	height: 100px;
+	margin-left: -125px;
+	margin-top: -15px;
+	padding: 10px 10 10px 10px;
+	border: 1px solid #ddd;
+	text-align: center;
+	color: #333333;
+	font-size: 14px;
+	background-color: #CCCCCC;
+	opacity: 0.8;
+	background-image: url('/assets/selecao_admin/ajax-loader.gif');
+	background-repeat: no-repeat;	
+	background-position: center;	
+}
+
+.formError .formErrorContent {
+    background: none repeat scroll 0 0 #f2dede;
+		color: #b94a48;
+		border: 1px solid #AAAAAA;
+}
+
+.formError .formErrorArrow div {
+    background: none repeat scroll 0 0 #f2dede;
+    border-left: 2px solid #AAAAAA;
+    border-right: 2px solid #AAAAAA;
+}

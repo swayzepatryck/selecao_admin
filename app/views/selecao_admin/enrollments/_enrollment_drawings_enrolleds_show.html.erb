@@ -1,0 +1,52 @@
+<%- model_class = SelecaoAdmin::Enrollment -%>
+<h1><%= SelecaoAdmin::DrawingEnrolled.model_name.human.pluralize%></h1>
+<hr>
+
+<% get_enrolleds_drawn_count.each do |cee|%>
+		<h3><%=cee.student_quota.title%></h3>
+		<% number_of_vacancies = get_number_of_vacancies(cee.drawing_id, cee.student_quota_id).number_of_vacancies%>
+		<table class="table table-bordered table-striped" id="enrollmentDrawingsEnrolledsAjaxTable">
+		  <thead>
+		    <tr>
+		      <th><%= model_class.human_attribute_name(:position) %></th>
+		      <th><%= model_class.human_attribute_name(:name) %></th>
+		      <th><%= model_class.human_attribute_name(:unique_id) %></th>
+		      <th><%= model_class.human_attribute_name(:student_quota_id) %></th>	
+		      <th><%= model_class.human_attribute_name(:email) %></th>	
+		      <th><%= model_class.human_attribute_name(:phones) %></th>	
+
+
+		      <th><%=t '.actions', :default => t("helpers.actions") %></th>	
+		    </tr>
+		  </thead>
+		  <tbody>				
+				<% pos = 1 %>
+		    <% get_enrolleds_drawn(@enrollment.id, cee.student_quota_id).each do |ed| %>
+		      <tr id="tr_<%=ed.id%>" class="<%= 'success' if pos <= number_of_vacancies %>">						
+						<td><%="#{pos} #{number_of_vacancies}"%></td>		
+						<td><%=link_to ed.enrolled.user.name, enrolled_path(ed.enrolled.id)%></td>
+						<td><%=ed.enrolled.user.login%></td>
+						<td><%=ed.student_quota.abbreviation%></td>
+						<td><%=ed.enrolled.user.email%></td>
+						<td><%=ed.enrolled.phones%></td>
+						<td>
+						  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+						              'www.google.com.br',
+						              :method => 'delete',
+						              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+						              :class => 'btn btn-mini btn-danger' %>
+
+						</td>
+		      </tr>
+					<% pos = pos + 1%>
+		    <% end %>
+		  </tbody>
+		</table>
+		<br/>
+		<br/>
+		<br/>
+
+<% end %>
+
+
+

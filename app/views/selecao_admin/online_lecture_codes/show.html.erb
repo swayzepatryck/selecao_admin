@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Code:</b>
+  <%= @online_lecture_code.code %>
+</p>
+
+<p>
+  <b>Online lecture:</b>
+  <%= @online_lecture_code.online_lecture %>
+</p>
+
+
+<%= link_to 'Edit', edit_online_lecture_code_path(@online_lecture_code) %> |
+<%= link_to 'Back', online_lecture_codes_path %>

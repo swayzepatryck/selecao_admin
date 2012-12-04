@@ -1,0 +1,40 @@
+<%- model_class = SelecaoAdmin::Drawing -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:publication_date) %>:</strong></dt>
+  <dd><%=ct @drawing.publication_date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:publication_time) %>:</strong></dt>
+  <dd><%=ct @drawing.publication_time, :format => :hour %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:raffle_date) %>:</strong></dt>
+  <dd><%=ct @drawing.raffle_date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:raffle_time) %>:</strong></dt>
+  <dd><%=ct @drawing.raffle_time, :format => :hour %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:enrollment_id) %>:</strong></dt>
+  <dd><%= @drawing.enrollment.short_title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:employee_id) %>:</strong></dt>
+  <dd><%= @drawing.employee.name %></dd>
+	<hr>
+	
+  <dt><strong><%= SelecaoAdmin::Drawing.new.class.human_attribute_name(:number_of_vacancies)  %>:</strong></dt>
+  <dd><ul><%@drawing.drawing_student_quotas.each {|dsq|%><li><%= t('selecao_admin.general.showing_student_quota_vacancie_numbers_by_drawing', :vacancie_number => dsq.number_of_vacancies, :student_quota => dsq.student_quota.title)%></li><%}%></ul></dd>
+	
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              drawings_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_drawing_path(@drawing), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              drawing_path(@drawing),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>
+
+<% if @drawing.enrolleds.any? %>
+	<%= render :partial => 'drawing_enrolleds_show', :locals => {:object => @drawing} %>	
+<% end %>

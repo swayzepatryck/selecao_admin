@@ -1,0 +1,55 @@
+<%- model_class = SelecaoAdmin::Enrollment -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
+                                 :default => "New #{model_class.model_name.human}") %></h1>
+</div>
+
+<%= render :partial => 'form' %>
+
+<%= render :partial => 'selecao_admin/sidebars/announcement_enrollment' %>
+
+<%= render :partial => 'selecao_admin/sidebars/dependecies', :locals => {:dependecies_model => SelecaoAdmin::Enrollment}%>
+
+
+<script type="text/javascript" charset="utf-8">
+	jQuery("#enrollment_entry_process_id").change(function() {
+	  $.getJSON(
+	    '/selecao-admin/json_entry_process_mode/' + jQuery(this).find("option:selected").val(),
+	    {id: $(this).val()},
+	    function(data){
+	      $.each(data, function(i, obj){
+					var epmid = obj.id
+					if (epmid === 1) {
+				    return jQuery("#score_evaluations").show();
+				  } else if (epmid === 2) {
+				    return jQuery("#score_evaluations").hide();
+				  }
+	   		})
+			}
+		);
+	});
+</script>
+
+
+<% if @enrollment.errors.any? %>
+	<!-- Funcao para mudanca do modo de processo seletivo -->
+	<script type="text/javascript" charset="utf-8">     
+	jQuery("#enrollment_entry_process_id").change(function() {
+	  $.getJSON(
+	    '/selecao-admin/json_entry_process_mode/' + jQuery(this).find("option:selected").val(),
+	    {id: $(this).val()},
+	    function(data){
+	      $.each(data, function(i, obj){
+					var epmid = obj.id
+					if (epmid === 1) {
+				    return jQuery("#score_evaluations").show();
+				  } else if (epmid === 2) {
+				    return jQuery("#score_evaluations").hide();
+				  }
+	   		})
+			}
+		);
+	});
+	</script>
+	<!-- ./Funcao para mudanca do modo de processo seletivo -->
+<% end %>

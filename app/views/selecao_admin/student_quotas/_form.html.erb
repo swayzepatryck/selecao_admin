@@ -1,0 +1,46 @@
+<% @student_quota ||= SelecaoAdmin::StudentQuota.new %>
+
+<%- if @student_quota.new_record? %>
+  <div class="modal-header">
+    <button class="close" data-dismiss="modal">x</button>
+    <%- model_class = SelecaoAdmin::StudentQuota -%>
+	  <h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human, :default => "New #{model_class.model_name.human}") %></h1>		
+  </div>
+<% else %>
+	<div class="modal-header">
+	  <button class="close" data-dismiss="modal">x</button>
+	  <%- model_class = SelecaoAdmin::StudentQuota -%>
+	  <h3><%=t '.title', :default => t('helpers.titles.edit', :model => model_class.model_name.human,
+	                                   :default => "Edit #{model_class.model_name.human}") %></h3>
+	</div>	
+<% end %>
+
+
+<%= form_for @student_quota, :remote => true, :html => { :class => 'form-horizontal' } do |f| %>
+	<div class="modal-body">
+	  <div class="control-group">
+	    <%= f.label :title, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.text_field :title, :class => 'text_field' %>
+	    </div>
+	  </div>
+
+	  <div class="control-group">
+	    <%= f.label :abbreviation, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.text_field :abbreviation, :class => 'text_field' %>
+	    </div>
+	  </div>
+	
+	  <div class="control-group">
+	    <%= f.label :active, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.check_box :active, :class => 'checkbox' %>
+	    </div>
+	  </div>
+	</div>
+
+  <div class="modal-footer">
+    <%= f.submit nil, :class => 'btn btn-primary', :id => "fat-btn", :"data-loading-text" => "#{t('selecao_admin.general.saving_tag')}" %>
+  </div>
+<% end %>

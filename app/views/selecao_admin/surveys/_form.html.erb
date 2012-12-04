@@ -1,0 +1,27 @@
+<%= form_for @survey, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'text_field span6' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :survey_code, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :survey_code, :class => 'text_field span6' %>
+    </div>
+  </div>
+
+
+	<%= f.fields_for :survey_questions do |builder| %>
+		<%= render :partial => 'survey_question_fields', :locals => {:f => builder} %>
+	<% end %>
+	<%= link_to_add_fields t("selecao_admin.general.add_survey_question"), f, :survey_questions %>
+ 	
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                surveys_path, :class => 'btn' %>
+  </div>
+<% end %>

@@ -1,0 +1,34 @@
+<%= form_for @campus, :html => { :class => 'form-horizontal' } do |f| %>
+	<div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field span6' %>
+    </div>
+  </div>				  
+	<hr>
+	<div class="row">
+		<div class="span6">
+				<h3><%=t("selecao_admin.general.add_address")%></h3>
+				<hr>					
+				<%= f.fields_for :addresses do |builder| %>
+					<%= render :partial => 'address_fields', :locals => {:f => builder} %>		
+				<% end %>
+				<%= link_to_add_fields t("selecao_admin.general.add_address"), f, :addresses %>								
+				<label class="message"><%=@campus.errors[:addresses]%></label>						
+		</div>
+
+		<div class="span6">
+					<h3><%=t("selecao_admin.general.add_phone")%></h3>
+					<hr>					
+					<%= f.fields_for :phones do |builder| %>
+						<%= render :partial => 'phone_fields', :locals => {:f => builder} %>							  
+					<% end %>
+				<%= link_to_add_fields t("selecao_admin.general.add_phone"), f, :phones %>    				
+				<label class="message"><%=@campus.errors[:phones]%></label>						
+		</div>		
+	</div>		
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  enrolled: 
+  discipline: 
+  score: 1.5
+
+two:
+  enrolled: 
+  discipline: 
+  score: 1.5

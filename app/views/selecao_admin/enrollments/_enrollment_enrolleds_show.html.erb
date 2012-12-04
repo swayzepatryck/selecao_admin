@@ -1,0 +1,40 @@
+<%- model_class = SelecaoAdmin::Enrolled -%>
+<% @enrolled_enrollments = SelecaoAdmin::EnrollmentEnrolled.where(:enrollment_id => @enrollment.id)%>
+<h1><%= SelecaoAdmin::EnrollmentEnrolled.model_name.human.pluralize%> (<%= @enrolled_enrollments.count%>)</h1>
+<hr>
+	<table class="table table-bordered table-striped" id="enrollmentEnrolledsAjaxTable">
+	  <thead>
+	    <tr>
+	      <th><%= model_class.human_attribute_name(:name) %></th>
+	      <th><%= model_class.human_attribute_name(:unique_id) %></th>
+	      <th><%= model_class.human_attribute_name(:student_quota_id) %></th>	
+	      <th><%= model_class.human_attribute_name(:email) %></th>	
+	      <th><%= model_class.human_attribute_name(:phones) %></th>	
+
+
+	      <th><%=t '.actions', :default => t("helpers.actions") %></th>	
+	    </tr>
+	  </thead>
+	  <tbody>
+			
+	    <%@enrolled_enrollments.each do |ee|%>
+	      <tr id="tr_<%=ee.id%>">
+					<td><%=ee.enrolled.user.name%></td>
+					<td><%=ee.enrolled.user.login%></td>
+					<td><%=ee.student_quota.abbreviation%></td>
+					<td><%=ee.enrolled.user.email%></td>
+					<td><%=ee.enrolled.phones%></td>
+					<td>
+					  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+					              enrollment_enrolled_path(ee),
+					              :method => 'delete',
+					              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+					              :class => 'btn btn-mini btn-danger' %>
+	          
+					</td>
+	      </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+<hr>
+

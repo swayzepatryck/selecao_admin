@@ -1,0 +1,79 @@
+<%= form_for @enrolled, :html => { :class => 'form-horizontal' } do |f| %>
+	<div class="control-group">
+	  <%= f.label :user_id, :class => 'control-label'%>
+	  <div class="controls">
+			<%= f.collection_select :user_id, User.order(:name), :id, :name, {:prompt => true}, {:multiple=>false, :class => 'span4', :"data-placeholder"=> t("validation.chosen.text_single"), :"data-no_results_text" => t("validation.chosen.no_results_match")} %>
+	  </div>
+	</div>
+  <div class="control-group">
+    <%= f.label :birth_date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :birth_date, :class => 'date_select', :start_year  => 1920, :end_year => 2017 %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :genre_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :genre_id, SelecaoAdmin::Genre.all, :id, :name, :prompt => true %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :marital_status_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :marital_status_id, SelecaoAdmin::MaritalStatus.all, :id, :title, :prompt => true %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :id_card_number, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :id_card_number, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :id_card_issuer, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :id_card_issuer, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :fathers_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :fathers_name, :class => 'text_field span6' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :mothers_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :mothers_name, :class => 'text_field span6' %>
+    </div>
+  </div>
+
+	<div class="row">
+		<div class="span6">
+				<h3><%=t("selecao_admin.general.add_address")%></h3>
+				<hr>					
+				<%= f.fields_for :addresses do |builder| %>
+					<%= render :partial => 'address_fields', :locals => {:f => builder} %>		
+				<% end %>
+				<%= link_to_add_fields t("selecao_admin.general.add_address"), f, :addresses %>						
+				<label class="message" for="entry_process_name"><%=@enrolled.errors[:addresses]%></label>						
+		</div>
+
+		<div class="span6">
+					<h3><%=t("selecao_admin.general.add_phone")%></h3>
+					<hr>					
+					<%= f.fields_for :phones do |builder| %>
+						<%= render :partial => 'phone_fields', :locals => {:f => builder} %>							  
+					<% end %>
+				<%= link_to_add_fields t("selecao_admin.general.add_phone"), f, :phones %>
+				<label class="message" for="entry_process_name"><%=@enrolled.errors[:phones]%></label>										    				
+		</div>		
+	</div>		
+
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                enrolleds_path, :class => 'btn' %>
+  </div>
+<% end %>

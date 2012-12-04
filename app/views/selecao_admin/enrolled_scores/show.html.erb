@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Enrolled:</b>
+  <%= @enrolled_score.enrolled %>
+</p>
+
+<p>
+  <b>Discipline:</b>
+  <%= @enrolled_score.discipline %>
+</p>
+
+<p>
+  <b>Score:</b>
+  <%= @enrolled_score.score %>
+</p>
+
+
+<%= link_to 'Edit', edit_enrolled_score_path(@enrolled_score) %> |
+<%= link_to 'Back', enrolled_scores_path %>

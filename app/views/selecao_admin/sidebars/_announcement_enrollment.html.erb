@@ -1,0 +1,8 @@
+<% content_for :left_sidebar do %>	
+	<ul class="nav nav-list">
+	  <li class="nav-header">Edital / Inscrições</li>
+	  <li class="divider"></li>		
+	  <li><%=active_link_to SelecaoAdmin::Announcement.model_name.human, announcement_path(get_path_parameters), {:wrap_tag => :li, :active => detect_current_path(announcement_path(get_path_parameters))} %></li>    
+	  <li><%=active_link_to SelecaoAdmin::Enrollment.model_name.human.pluralize, announcement_enrollments_path(get_path_parameters), {:wrap_tag => :li, :active => detect_current_path(announcement_enrollments_path(get_path_parameters))} %></li>
+	</ul>    
+<% end %>

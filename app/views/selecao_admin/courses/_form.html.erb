@@ -1,0 +1,72 @@
+<%= form_for @course, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field span8' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :course_code, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :course_code, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :description, :class => 'text_area span8' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :goal, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :goal, :class => 'text_area span8' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :course_shift_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :course_shift_id, SelecaoAdmin::CourseShift.all, :id, :title, {:prompt => true} %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :course_situation_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :course_situation_id, SelecaoAdmin::CourseSituation.all, :id, :title, {:prompt => true} %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :campus_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :campus_id, SelecaoAdmin::Campus.all, :id, :name, {:prompt => true} %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :info_link, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :info_link, :class => 'text_field span8' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :course_prerequisites, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.fields_for :course_prerequisites do |builder| %>
+				<%= render :partial => 'course_prerequisite_fields', :locals => {:f => builder} %>							  
+			<% end %>
+			<%= link_to_add_fields t("selecao_admin.general.add_course_prerequisite"), f, :course_prerequisites %>    							
+    </div>
+  </div>
+
+	
+	
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+               courses_path, :class => 'btn' %>
+  </div>
+<% end %>
+
+
+
+

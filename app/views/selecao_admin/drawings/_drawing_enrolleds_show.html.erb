@@ -1,0 +1,88 @@
+<script type="text/javascript" charset="utf-8">
+	$(document).ready(function() {
+	  return $(".vacancyTransferForm").validationEngine();
+	});	
+	
+	
+	jQuery(function() {
+	  return $("#drawingsEnrolledsAjaxTable").dataTable({
+	    sDom: "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+	    sPaginationType: "bootstrap",
+	    oLanguage: {
+	      sProcessing: "Aguarde enquanto os dados são carregados ...",
+	      sLengthMenu: "Mostrar _MENU_ registros por pagina",
+	      sZeroRecords: "Nenhum registro correspondente ao criterio encontrado",
+	      sInfoEmtpy: "Exibindo 0 a 0 de 0 registros",
+	      sInfo: "Exibindo de _START_ a _END_ de _TOTAL_ registros",
+	      sInfoFiltered: "",
+	      sSearch: "Procurar: ",
+	      oPaginate: {
+	        sFirst: "Primeiro",
+	        sPrevious: "Anterior",
+	        sNext: "Próximo",
+	        sLast: "Último"
+	      }
+	    }
+	  });
+	});
+</script>
+
+
+<%- model_class = SelecaoAdmin::Drawing -%>
+<h1><%= SelecaoAdmin::DrawingEnrolled.model_name.human.pluralize%></h1>
+<hr>
+
+<% get_drawn_count.each do |cee|%>
+		<h3><%=cee.student_quota.title%></h3>
+		<table class="table table-bordered table-striped" id="drawingsEnrolledsAjaxTable">
+		  <thead>
+		    <tr>
+		      <th><%= model_class.human_attribute_name(:position) %></th>
+		      <th><%= model_class.human_attribute_name(:name) %></th>
+		      <th><%= model_class.human_attribute_name(:unique_id) %></th>
+		      <th><%= model_class.human_attribute_name(:student_quota_id) %></th>	
+		      <th><%= model_class.human_attribute_name(:email) %></th>	
+		      <th><%= model_class.human_attribute_name(:phones) %></th>	
+
+
+		      <th><%=t '.actions', :default => t("helpers.actions") %></th>	
+		    </tr>
+		  </thead>
+		  <tbody>				
+				<% pos = 1 %>
+		    <% get_enrolleds_drawn(@drawing.enrollment.id, cee.student_quota_id).each do |ed| %>
+		      <tr id="tr_<%=ed.id%>" class="<%= 'success' if pos <= get_number_of_vacancies(cee.drawing_id, cee.student_quota_id).number_of_vacancies %>">						
+						<td><%="#{pos}"%></td>		
+						<td><%=link_to ed.enrolled.user.name, enrolled_path(ed.enrolled.id)%></td>
+						<td><%=ed.enrolled.user.login%></td>
+						<td><%=ed.student_quota.abbreviation%></td>
+						<td><%=ed.enrolled.user.email%></td>
+						<td><%=ed.enrolled.phones%></td>
+						<td>
+						  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+						              'www.google.com.br',
+						              :method => 'delete',
+						              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+						              :class => 'btn btn-mini btn-danger' %>
+						</td>
+		      </tr>
+					<% pos = pos + 1%>
+		    <% end %>
+		  </tbody>
+		</table>
+		<div class="leftVacancies">
+			<p><b>Vagas restantes: <%= left_vacancies(pos, cee) %></b></p>
+			<hr/>
+			<% if left_vacancies(pos,cee).to_i > 0 %>
+				<%= form_tag '/selecao-admin/drawings_transfer_vacancy', :class => 'vacancyTransferForm', :remote => true do %>
+					<%= hidden_field_tag 'drawing_id', nil, :value => @drawing.id %>
+					<%= hidden_field_tag 'from_student_quota_id', nil, :value => cee.student_quota.id %>
+					<%= t('selecao_admin.general.transfer_left_vacancy__transfer')%> <%= text_field_tag 'vacancy_number', nil, :class => "validate[required,custom[integer],max[#{left_vacancies(pos, cee)}]] span1" %> <%=t('selecao_admin.general.transfer_left_vacancy__to')%> 
+					<%= select_tag "to_student_quota_id", options_from_collection_for_select(@drawing.drawing_avaiable_enrolleds, "id", "abbreviation"), :prompt => t('helpers.select.prompt'), :class => 'validate[required]' %>			
+					<%= submit_tag t('selecao_admin.general.transfer'), :class => 'btn btn-primary transferButton'%>
+				<% end %>
+			<% else %>
+				<%= t('selecao_admin.general.no_left_vacancies')%> 
+			<% end %>			
+		</div>
+<% end %>

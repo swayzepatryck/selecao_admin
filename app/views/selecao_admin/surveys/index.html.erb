@@ -1,0 +1,42 @@
+<%- model_class = SelecaoAdmin::Survey -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+
+<div class="form-actions">
+	<%= link_to t('.new', :default => t("helpers.links.new")),
+	            new_survey_path,
+	            :class => 'btn btn-primary' %>
+	<%= link_to t('.back', :default => t("helpers.links.back")),
+	            SelecaoAdmin::path, :class => 'btn'  %>
+</div>
+
+
+<table class="table table-striped" id="surveyAjaxTable">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @surveys.each do |survey| %>
+      <tr id="tr_<%=survey.id%>">
+        <td><%= link_to survey.id, survey_path(survey) %></td>
+        <td><%= link_to survey.title, survey_path(survey)  %></td>
+        <td><%=l survey.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_survey_path(survey), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      survey_path(survey),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("confirmation.survey.destroy_with_dependecies_warning", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

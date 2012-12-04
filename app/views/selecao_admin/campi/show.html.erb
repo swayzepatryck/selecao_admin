@@ -1,0 +1,25 @@
+<%- model_class = SelecaoAdmin::Campus -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @campus.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:addresses) %>:</strong></dt>
+  <dd><% @campus.addresses.each {|c|%><%=c.short_address%><br><%}%></dd>
+  <dt><strong><%= model_class.human_attribute_name(:phones) %>:</strong></dt>
+  <dd><% @campus.phones.each {|c|%><%=c.short_phone%><br><%}%></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              campi_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_campus_path(@campus), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              campus_path(@campus),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>

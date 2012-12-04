@@ -1,0 +1,27 @@
+<h1>Listing entry_mails</h1>
+
+<table>
+  <tr>
+    <th>Sender user</th>
+    <th>Recipient user</th>
+    <th>Entry mail type</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @entry_mails.each do |entry_mail| %>
+  <tr>
+    <td><%= entry_mail.sender_user_id %></td>
+    <td><%= entry_mail.recipient_user_id %></td>
+    <td><%= entry_mail.entry_mail_type %></td>
+    <td><%= link_to 'Show', entry_mail %></td>
+    <td><%= link_to 'Edit', edit_entry_mail_path(entry_mail) %></td>
+    <td><%= link_to 'Destroy', entry_mail, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Entry mail', new_entry_mail_path %>

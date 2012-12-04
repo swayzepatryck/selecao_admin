@@ -1,0 +1,41 @@
+<%- model_class = SelecaoAdmin::Course -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%=c @course.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:course_code) %>:</strong></dt>
+  <dd><%=c @course.course_code %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+  <dd><%=c simple_format(@course.description) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:goal) %>:</strong></dt>
+  <dd><%=c simple_format(@course.goal) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:course_shift_id) %>:</strong></dt>
+  <dd><%=c @course.course_shift.title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:course_situation_id) %>:</strong></dt>
+  <dd><%=c @course.course_situation.title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:campus_id) %>:</strong></dt>
+  <dd><%=c @course.campus.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:info_link) %>:</strong></dt>
+  <dd><%=c @course.info_link %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:course_prerequisites) %>:</strong></dt>
+  <dd><%@course.course_prerequisites.each{|pr|%><%=pr.description%><br/><%}%></dd>	
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              courses_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_course_path(@course), :class => 'btn' %>
+
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              course_path(@course),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+
+</div>
+
+<%= render :partial => 'selecao_admin/sidebars/dependecies', :locals => {:dependecies_model => SelecaoAdmin::Course}%>

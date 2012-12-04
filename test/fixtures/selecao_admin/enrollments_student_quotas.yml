@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  enrollment: 
+  student_quota: 
+
+two:
+  enrollment: 
+  student_quota: 

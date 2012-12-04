@@ -1,0 +1,41 @@
+<%- model_class = SelecaoAdmin::Enrolled  -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= User.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%=c @enrolled.user.name %></dd>
+  <dt><strong><%= User.human_attribute_name(:login) %>:</strong></dt>
+  <dd><%=c @enrolled.user.login %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:birth_date) %>:</strong></dt>
+  <dd><%=c @enrolled.birth_date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:genre_id) %>:</strong></dt>
+  <dd><%=c @enrolled.genre.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:marital_status_id) %>:</strong></dt>
+  <dd><%=c @enrolled.marital_status.title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:id_card_number) %>:</strong></dt>
+  <dd><%=c @enrolled.id_card_number %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:id_card_issuer) %>:</strong></dt>
+  <dd><%=c @enrolled.id_card_issuer %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:fathers_name) %>:</strong></dt>
+  <dd><%=c @enrolled.fathers_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:mothers_name) %>:</strong></dt>
+  <dd><%=c @enrolled.mothers_name %></dd>
+ <dt><strong><%= model_class.human_attribute_name(:addresses) %>:</strong></dt>
+  <dd><% @enrolled.addresses.each {|c|%><%= c.short_address%><br><%}%></dd>
+  <dt><strong><%= model_class.human_attribute_name(:phones) %>:</strong></dt>
+  <dd><% @enrolled.phones.each {|c|%><%= c.short_phone%><br><%}%></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              enrolleds_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_enrolled_path(@enrolled), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              enrolled_path(@enrolled),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>

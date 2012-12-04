@@ -1,0 +1,29 @@
+<h1>Listing enrollments_enrolleds</h1>
+
+<table>
+  <tr>
+    <th>Enrolled</th>
+    <th>Enrollment</th>
+    <th>Student quota</th>
+    <th>Score evaluation</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @enrollments_enrolleds.each do |enrollments_enrolled| %>
+  <tr>
+    <td><%= enrollments_enrolled.enrolled %></td>
+    <td><%= enrollments_enrolled.enrollment %></td>
+    <td><%= enrollments_enrolled.student_quota %></td>
+    <td><%= enrollments_enrolled.score_evaluation %></td>
+    <td><%= link_to 'Show', enrollments_enrolled %></td>
+    <td><%= link_to 'Edit', edit_enrollments_enrolled_path(enrollments_enrolled) %></td>
+    <td><%= link_to 'Destroy', enrollments_enrolled, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Enrollments enrolled', new_enrollments_enrolled_path %>

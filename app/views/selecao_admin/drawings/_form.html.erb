@@ -1,0 +1,68 @@
+<%= form_for @drawing, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :publication_date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :publication_date, :class => 'date_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :publication_time, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.time_select :publication_time, :class => 'datetime_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :raffle_time, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.time_select :raffle_time, :class => 'datetime_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :raffle_date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.time_select :raffle_date, :class => 'datetime_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :employee_id, :class => 'control-label' %>
+    <div class="controls">
+  			<%= f.collection_select :employee_id, User.where(:employee => true), :id, :name, {:prompt => true}, {:multiple=>false, :class => 'span4', :"data-placeholder"=> t("validation.chosen.text_single"), :"data-no_results_text" => t("validation.chosen.no_results_match")} %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :enrollment_id, :class => 'control-label' %>
+    <div class="controls">
+			<%= f.collection_select :enrollment_id, enrollments_without_drawing, :id, :short_title, {:prompt => true}, {:multiple=>false, :class => 'span8', :"data-placeholder"=> t("validation.chosen.text_single"), :"data-no_results_text" => t("validation.chosen.no_results_match"), :onchange => "update_student_quotas_div(this.value)"} %>
+    </div>
+  </div>
+	
+	<hr>
+	
+	<h4><%= SelecaoAdmin::Drawing.new.class.human_attribute_name(:number_of_vacancies) %></h3>
+	<div id="studentQuotasDiv"></div>
+	
+	<% if (@drawing.errors.any? and defined?(@drawing.errors[:blank_number_of_vacancies])) or action_name == 'edit'%>
+		<% action_name == 'edit' ? enrollment_id = @drawing.enrollment.id : enrollment_id = params[:drawing]['enrollment_id'] %>
+		<%= javascript_tag do %>
+			enrollment_id = '<%=enrollment_id%>'
+		  jQuery.ajax({
+		    url: "/selecao-admin/find/drawing_student_quotas/" + enrollment_id,
+		    type: "GET",
+		    data: {"enrollment_id" : enrollment_id},
+		    dataType: "html",
+		    success: function(data) {
+		      jQuery("#studentQuotasDiv").html(data);
+		    }
+		  });
+		<% end %>
+		<label class="message controls"><%=@drawing.errors[:blank_number_of_vacancies]%></label>				
+	<% end %>
+	
+	
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                drawings_path, :class => 'btn' %>
+  </div>
+<% end %>

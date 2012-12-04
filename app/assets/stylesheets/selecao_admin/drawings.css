@@ -1,0 +1,16 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+.leftVacancies {
+	border: 1px solid #dddddd;
+	border-radius: 5px;
+	padding: 10px;
+	margin-bottom: 30px;
+	background-color: #FCF8E3;
+}
+
+.transferButton {
+	margin-top: -10px;
+}

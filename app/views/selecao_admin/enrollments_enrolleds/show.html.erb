@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Enrolled:</b>
+  <%= @enrollments_enrolled.enrolled %>
+</p>
+
+<p>
+  <b>Enrollment:</b>
+  <%= @enrollments_enrolled.enrollment %>
+</p>
+
+<p>
+  <b>Student quota:</b>
+  <%= @enrollments_enrolled.student_quota %>
+</p>
+
+<p>
+  <b>Score evaluation:</b>
+  <%= @enrollments_enrolled.score_evaluation %>
+</p>
+
+
+<%= link_to 'Edit', edit_enrollments_enrolled_path(@enrollments_enrolled) %> |
+<%= link_to 'Back', enrollments_enrolleds_path %>

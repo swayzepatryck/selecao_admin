@@ -1,0 +1,23 @@
+<%- if @score_evaluation.errors.any? %>
+  console.log('Error');
+	$("#editScoreEvaluationModal").html("<%= escape_javascript(render 'form') %>")	
+<%- else %>
+  console.log('Atualizado');
+	/* Removendo a linha */
+	$('#scoreEvaluationAjaxTable').dataTable().fnDeleteRow( document.getElementById("tr_<%=@score_evaluation.id%>"));		
+  $('#editScoreEvaluationModal').modal('hide');
+	var addId = $('#scoreEvaluationAjaxTable').dataTable().fnAddData( [
+		"<%=escape_javascript(link_to @score_evaluation.id, score_evaluation_path(@score_evaluation))%>",
+		"<%=escape_javascript(link_to @score_evaluation.title, score_evaluation_path(@score_evaluation))%>",
+		"<%=escape_javascript(link_to t('.edit', :default => t('helpers.links.edit')), edit_score_evaluation_path(@score_evaluation), :class => 'btn btn-mini', :remote => true)%>" +
+		<% if any_restrict_dependecy?(@score_evaluation) %>
+			" <%=escape_javascript(link_to t('.destroy', :default => t('helpers.links.destroy')), '#', :class => 'btn btn-mini btn-danger', :rel => 'popover', :'data-content' => t('validation.restrict_validation', :dependecie_models => any_restrict_dependecy?(@score_evaluation)), :'data-original-title' => t('selecao_admin.general.atention'))%>"
+		<% else %>
+			" <%=escape_javascript(link_to t('.destroy', :default => t('helpers.links.destroy')), score_evaluation_path(@score_evaluation), :method => :delete, :class => 'btn btn-mini btn-danger', :confirm => t('.confirm', :default => t('helpers.links.confirm', :default => 'Are you sure?')), :remote => true)%>"				
+		<% end %>
+	]);	
+ 	var theNode = $('#scoreEvaluationAjaxTable').dataTable().fnSettings().aoData[addId[0]].nTr;
+	$(theNode).attr("id", "tr_<%=@score_evaluation.id%>");		
+<%- end %>
+
+

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SelecaoAdmin</title>
+  <%= stylesheet_link_tag    "selecao_admin/application", :media => "all" %>
+  <%= javascript_include_tag "selecao_admin/application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body id="main">
+  <div class="navbar navbar-fixed-top">
+     <div class="navbar-inner">
+        <div class="container-fluid">
+          <%= link_to t('general.website_name'), '/', :class => 'brand'%> 
+		  <a class="brand" href="">&raquo;</a>
+		  <a class="brand" href="/selecao-admin"><%=t 'selecao_admin.general.website_name'%></a>	
+		  <%= user_session_manager %>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+		
+		
+        <div class="span3">
+          <div class="page-header">
+		  	<h1>Menu</h1>
+		  </div>
+          <div class="well sidebar-nav">
+						<%= yield :left_sidebar %>
+          </div><!--/.well -->
+        </div><!--/span-->
+
+        <div class="span9">
+          <div class="row-fluid">
+						<%= show_flash_messages %>
+						<%= yield %>
+          </div><!--/row-->
+        </div><!--/span-->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; IFB - <%= Time.now.year %></p>
+      </footer>
+
+			<script src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-modal.js"></script>
+
+    </div><!--/.fluid-container-->
+</body>
+</html>

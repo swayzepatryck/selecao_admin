@@ -1,0 +1,77 @@
+<fieldset>
+	<div class="control-group">
+	  	<%= f.label :address_type_id, :class => 'control-label' %>
+	  	<div class="controls">
+	    	<%= f.collection_select :address_type_id, SelecaoAdmin::AddressType.all, :id, :title, :prompt => true %>
+	  	</div>
+	</div>
+
+	<div class="control-group">
+	  <%= f.label :street, :class => 'control-label' %>
+	  <div class="controls">
+	    <%= f.text_field :street, :class => 'text_field' %>
+	  </div>
+	</div>
+
+	<div class="control-group">
+	  <%= f.label :number, :class => 'control-label' %>
+	  <div class="controls">
+	    <%= f.text_field :number, :class => 'text_field' %>
+	  </div>
+	</div>
+
+	<div class="control-group">
+	  <%= f.label :neighborhood, :class => 'control-label' %>
+	  <div class="controls">
+	    <%= f.text_field :neighborhood, :class => 'text_field' %>
+	  </div>
+	</div>
+
+	<div class="control-group">
+	  <%= f.label :complement, :class => 'control-label' %>
+	  <div class="controls">
+	    <%= f.text_field :complement, :class => 'text_field' %>
+	  </div>
+	</div>
+
+	<div id="city">
+		<div class="control-group">
+		  <%= f.label :city_id, :class => 'control-label' %>
+		  <div class="controls">
+		    <%= f.hidden_field :city_id, {:class => 'city-select2', :style => 'width: 370px'} %>						
+				<script type="text/javascript" charset="utf-8">
+					  $(".city-select2").select2({
+						 	placeholder: "Digite o nome da cidade",
+				      ajax: {
+				        url: "/selecao-admin/cities.json",
+				        datatype: "json",
+				        quietMillis: 100,
+				        data: function (term, page) { return { term:term, page:page }; },
+				        results: function (data, page) { return data; }
+				      },
+  							formatSearching: function () { return "Buscando..."; },
+								formatNoMatches: function () { return "Nenhum resultado encontrado."; }
+			      });
+				</script>
+				</script>
+		  </div>
+		</div>	
+	</div>
+
+	<div class="control-group">
+	  <%= f.label :reference_point, :class => 'control-label' %>
+	  <div class="controls">
+	    <%= f.text_field :reference_point, :class => 'text_field' %>
+	  </div>
+	</div>
+		
+	<div class="control-group">
+	  <%= f.label :postal_code, :class => 'control-label' %>
+	  <div class="controls">
+	    <%= f.text_field :postal_code, :class => 'text_field' %>
+	  </div>
+	</div>	
+	<hr>
+	<%= f.hidden_field :_destroy %>
+  <%= link_to t("selecao_admin.general.remove_address"), '#', :class => "remove_fields pull-right btn-mini" %>  
+</fieldset><br/>

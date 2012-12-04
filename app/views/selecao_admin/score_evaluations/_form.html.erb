@@ -1,0 +1,51 @@
+<% @score_evaluation ||= SelecaoAdmin::ScoreEvaluation.new %>
+
+<%- if @score_evaluation.new_record? %>
+  <div class="modal-header">
+    <button class="close" data-dismiss="modal">x</button>
+    <%- model_class = SelecaoAdmin::ScoreEvaluation -%>
+	  <h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human, :default => "New #{model_class.model_name.human}") %></h1>		
+  </div>
+<%- else %>
+	<div class="modal-header">
+	  <button class="close" data-dismiss="modal">x</button>
+	  <%- model_class = SelecaoAdmin::ScoreEvaluation -%>
+	  <h3><%=@score_evaluation.title%></h3>		
+	</div>	
+<% end %>
+
+<%= form_for @score_evaluation, :remote => true, :html => { :class => 'form-horizontal', :id => 'score_evaluation_form' } do |f| %>
+	<div class="modal-body">
+		<div class="control-group">
+	    <%= f.label :title, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.text_field :title, :class => 'text_field' %>
+	    </div>
+	  </div>
+	
+		<% if @score_evaluation.errors.any? %>
+		<script type="text/javascript" charset="utf-8">
+			$('.form-horizontal > form')[0].reset();
+			$('.chosen-disciplines').chosen();			
+		</script>
+		<% else %>
+			<script type="text/javascript" charset="utf-8">
+				$('.chosen-disciplines').chosen();			
+			</script>	
+		<% end %>
+	
+
+	  <div class="control-group">
+	    <%= f.label :disciplines, :class => 'control-label' %>
+	    <div class="controls">
+	    	<%= f.collection_select :discipline_ids, SelecaoAdmin::Discipline.order(:name), :id, :name, {:prompt => false}, {:multiple=>true, :class => 'chosen-disciplines span3', :"data-placeholder"=> t("validation.chosen.text_multiple"), :"data-no_results_text" => t("validation.chosen.no_results_match")} %>
+				<%= show_multiple_error_messages(f, :disciplines) %>
+	    </div>
+	  </div>		  
+	</div>
+	
+
+  <div class="modal-footer">	
+    <%= f.submit nil, :class => 'btn btn-primary', :"data-loading-text" => "#{t('selecao_admin.general.saving_tag')}" %>
+  </div> 
+<% end %>

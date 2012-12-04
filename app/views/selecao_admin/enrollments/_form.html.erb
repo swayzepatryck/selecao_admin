@@ -1,0 +1,93 @@
+<%= form_for [:announcement, @enrollment], :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+		<%= f.hidden_field :announcement_id, :value => params[:announcement_id] %>		  
+		<div class="control-group">
+	    <%= f.label :entry_process_id, :class => 'control-label' %>
+	    <div class="controls">
+				<%= f.collection_select :entry_process_id, SelecaoAdmin::EntryProcess.order(:name), :id, :name, {:prompt => true}, {:multiple=>false, :class => 'span4', :"data-placeholder"=> t("validation.chosen.text_single"), :"data-no_results_text" => t("validation.chosen.no_results_match")} %>
+	    </div>
+	  </div>
+						
+  	<div id="student_quotas">
+			<fieldset>
+				<div class="control-group">				
+						<%= f.label :student_quotas, :class => 'control-label' %>
+						<div class="controls">		
+							<%= (f.collection_select :student_quota_ids, SelecaoAdmin::StudentQuota.all, :id, :active_and_name, {:prompt => true}, {:multiple=>true, :class => 'span4', :"data-placeholder"=> t("validation.chosen.text_multiple"), :"data-no_results_text" => t("validation.chosen.no_results_match")}) if action_name == 'edit' %>	    	
+							<%= (f.collection_select :student_quota_ids, SelecaoAdmin::StudentQuota.order(:title).where(:active => true), :id, :title, {:prompt => true}, {:multiple=>true, :class => 'span4', :"data-placeholder"=> t("validation.chosen.text_multiple"), :"data-no_results_text" => t("validation.chosen.no_results_match")}) if action_name == 'new' %>	    	
+							<%= show_multiple_error_messages(f, :student_quotas) %>
+						</div>
+			  </div>
+			</fieldset>			
+		</div>	
+		<br/>
+		
+		<div id="score_evaluations">
+			<fieldset style="background-color: #dddddd;">
+				<div class="control-group">
+						<%= f.label :score_evaluations, :class => 'control-label' %>
+						<div class="controls">		
+							<%= f.collection_select :score_evaluation_ids, SelecaoAdmin::ScoreEvaluation.order(:title), :id, :title, {:prompt => true}, {:multiple=>true, :class => 'span4', :"data-placeholder"=> t("validation.chosen.text_multiple"), :"data-no_results_text" => t("validation.chosen.no_results_match")} %>	    	
+							<%= show_multiple_error_messages(f, :score_evaluations) %>
+						</div>
+			  </div>		  
+			</fieldset>
+		</div>	
+	  
+	  <div class="control-group">
+	    <%= f.label :course_id, :class => 'control-label' %>
+	    <div class="controls">
+		   	<%= f.collection_select :course_id, SelecaoAdmin::Course.order(:name), :id, :short_title, {:prompt => true}, {:multiple=>false, :class => 'span4', :"data-placeholder"=> t("validation.chosen.text_single"), :"data-no_results_text" => t("validation.chosen.no_results_match")} %>
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <%= f.label :start_date, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.date_select :start_date, :class => 'date_select' %>
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <%= f.label :end_date, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.date_select :end_date, :class => 'date_select' %>
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <%= f.label :start_time, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.time_select :start_time, :class => 'datetime_select' %>
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <%= f.label :end_time, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.time_select :end_time, :class => 'datetime_select' %>
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <%= f.label :number_of_vacancies, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.number_field :number_of_vacancies, :class => 'number_field' %>
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <%= f.label :survey_id, :class => 'control-label' %>
+	    <div class="controls">
+				<%= f.collection_select :survey_id, SelecaoAdmin::Survey.order(:title), :id, :short_title, {:prompt => true}, {:multiple=>false, :class => 'span4', :"data-placeholder"=> t("validation.chosen.text_single"), :"data-no_results_text" => t("validation.chosen.no_results_match")} %>
+	    </div>
+	  </div>	
+	  <div class="control-group">
+	    <%= f.label :lecture_type, :class => 'control-label' %>
+	    <div class="controls">
+				<%= f.collection_select :lecture_type_id, SelecaoAdmin::LectureType.order(:title), :id, :title, {:prompt => true} %>
+	    </div>
+	  </div>		
+  </fieldset>
+	<br/>
+	
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+               announcement_enrollments_path(params[:announcement_id]), :class => 'btn' %>
+  </div>
+<% end %>

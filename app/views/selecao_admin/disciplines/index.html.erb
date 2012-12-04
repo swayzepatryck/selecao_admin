@@ -1,0 +1,48 @@
+<%- model_class = SelecaoAdmin::Discipline -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+
+<div class="form-actions">
+	<button data-controls-modal="disciplineModal" data-backdrop="true" data-keyboard="true" class ="btn btn-primary" onmouseover="sandwich='pastrami';">Criar</i></button>	
+	<%= link_to t('.back', :default => t("helpers.links.back")),
+	            SelecaoAdmin::path, :class => 'btn'  %>
+</div>
+
+
+<table class="table table-striped" id="disciplineAjaxTable">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @disciplines.each do |discipline| %>
+      <tr id="tr_<%=discipline.id%>">
+        <td><%= link_to discipline.id, discipline_path(discipline) %></td>
+        <td><%= link_to discipline.name, discipline_path(discipline) %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_discipline_path(discipline), :class => 'btn btn-mini', :remote => true %>
+					<%= link_to_if(any_restrict_dependecy?(discipline), t('.destroy', :default => t("helpers.links.destroy")), "#", :class => "btn btn-mini btn-danger", :rel => "popover", :"data-content" => t("validation.restrict_validation", :dependecie_models => any_restrict_dependecy?(discipline)), :"data-original-title" => t("selecao_admin.general.atention")) {%>					
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      discipline_path(discipline),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger',
+ 											:remote => true %>
+					<%}%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div id="disciplineModal" class="modal hide fade" style="padding: 20px;">
+  <%= render :partial => 'form' %>
+</div>
+
+
+

@@ -1,0 +1,58 @@
+<%- model_class = SelecaoAdmin::Enrollment -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:announcement_id) %>:</strong></dt>
+  <dd><%=c @enrollment.announcement.title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:course_id) %>:</strong></dt>
+  <dd><%=c @enrollment.course.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:survey_id) %>:</strong></dt>
+  <dd><%=c @enrollment.survey.title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:entry_process_id) %>:</strong></dt>
+  <dd><%=c @enrollment.entry_process.name %></dd>
+	<dt><strong><%= model_class.human_attribute_name(:student_quotas) %>:</strong></dt>
+  <dd><ul><% @enrollment.student_quotas.each {|eq|%><li><%=eq.title%>;</li><%}%></ul></dd> 
+	<% if @enrollment.entry_process.entry_process_mode.id == 1 %>
+		<dt><strong><%= model_class.human_attribute_name(:score_evaluations) %>:</strong></dt>
+	  <dd><ul><% @enrollment.score_evaluations.each {|ee|%><li><%=ee.title%>;</li><%}%></ul></dd>  
+	<% end %>
+  <dt><strong><%= model_class.human_attribute_name(:start_date) %>:</strong></dt>
+  <dd><%=ct @enrollment.start_date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:end_date) %>:</strong></dt>
+  <dd><%=ct @enrollment.end_date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:start_time) %>:</strong></dt>
+  <dd><%=ct @enrollment.start_time, :format => :hour %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:end_time) %>:</strong></dt>
+  <dd><%=ct @enrollment.end_time, :format => :hour %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:number_of_vacancies) %>:</strong></dt>
+  <dd><%=c @enrollment.number_of_vacancies %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              announcement_enrollments_path(@enrollment.announcement), :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_announcement_enrollment_path(@enrollment.announcement, @enrollment), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              announcement_enrollment_path(@enrollment.announcement, @enrollment),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>
+
+<% if @enrollment.try(:enrolleds).any? %>
+	<%= render 'enrollment_enrolleds_show', :locals => {:object => @enrollment}%>
+<% end %>
+
+<% if @enrollment.try(:drawing) %>
+	<% if @enrollment.drawing.try(:enrolleds).any? %>
+		<%= render 'enrollment_drawings_enrolleds_show', :locals => {:object => @enrollment}%>
+	<% end %>
+<% end %>
+
+
+
+
+

@@ -1,0 +1,8 @@
+$("#main").before("<%= escape_javascript(render 'edit', :formats => [:html]) %>");
+$('#editAddressModal').modal({
+	show: true,
+	keyboard: true,
+	backdrop: true,
+});
+
+

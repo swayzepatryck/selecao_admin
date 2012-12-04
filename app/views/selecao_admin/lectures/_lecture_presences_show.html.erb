@@ -1,0 +1,34 @@
+<%- model_class = SelecaoAdmin::Lecture -%>
+<h1><%=SelecaoAdmin::LecturePresence.model_name.human.pluralize%></h1>
+<hr>
+<% if @lecture.lecture_type_id == 1%>
+	<table class="table table-bordered table-striped" id="onlineLectureAjaxTable">
+	  <thead>
+	    <tr>
+	      <th><%= model_class.human_attribute_name(:name) %></th>
+	      <th><%= model_class.human_attribute_name(:unique_id) %></th>
+	      <th><%= model_class.human_attribute_name(:attendance_lecture_presence_status_id) %></th>	
+	      <th><%= model_class.human_attribute_name(:campus) %></th>	
+	      <th><%=t '.actions', :default => t("helpers.actions") %></th>	
+	    </tr>
+	  </thead>
+	  <tbody>
+			
+	    <% @lecture.lecture_presences.each do |lecture_presence| %>
+	      <tr id="tr_<%=lecture_presence.id%>" class="<%= lecture_presence.attendance_lecture_presence_status_id == 2 ? 'success' : 'warning'  %>">
+	        <td><%= lecture_presence.try(:user) ? lecture_presence.user.name : "<<#{t('selecao_admin.general.not_registered')}>>" %></td>
+	        <td><%= lecture_presence.try(:user) ? lecture_presence.user.login : lecture_presence.enrolled_unique_id %></td>
+	        <td><%= lecture_presence.attendance_lecture_presence_status.title %></td>
+	        <td><%= lecture_presence.lecture.campus.name %></td>
+					<td>
+						<%= link_to (lecture_presence.attendance_lecture_presence_status_id == 1 ? t('selecao_admin.button.lecture_presence.check_presence') : t('selecao_admin.button.lecture_presence.uncheck_presence')),
+	                      lecture_path(@lecture, :lecture_presence_id => lecture_presence.id), 
+												:class => 'btn btn-mini',
+												:remote => true %>
+	          
+					</td>
+	      </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+<% end %>

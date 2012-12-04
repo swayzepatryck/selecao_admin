@@ -1,0 +1,89 @@
+@import "twitter/bootstrap/bootstrap";
+body { 
+	padding-top: 60px;
+}
+
+@import "twitter/bootstrap/responsive";
+
+// Set the correct sprite paths
+@iconSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings.png');
+@iconWhiteSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings-white.png');
+
+// Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
+// Note: If you use asset_path() here, your compiled boostrap_and_overrides.css will not 
+//       have the proper paths. So for now we use the absolute path.
+@fontAwesomeEotPath: '/assets/fontawesome-webfont.eot';
+@fontAwesomeWoffPath: '/assets/fontawesome-webfont.woff';
+@fontAwesomeTtfPath: '/assets/fontawesome-webfont.ttf';
+@fontAwesomeSvgPath: '/assets/fontawesome-webfont.svg';
+
+// Font Awesome
+@import "fontawesome";
+
+// Your custom LESS stylesheets goes here
+//
+// Since bootstrap was imported above you have access to its mixins which
+// you may use and inherit here
+//
+// If you'd like to override bootstrap's own variables, you can do so here as well
+// See http://twitter.github.com/bootstrap/less.html for their names and documentation
+//
+// Example:
+// @linkColor: #ff0000;
+
+
+fieldset {
+	background-color: #f5f5f5;
+	padding: 10px 10px 10px 10px;
+	border: 1px solid #e5e5e5;
+	border-radius: 5px 5px 5px 5px;
+}
+
+.hero-unit h5 {
+    color: inherit;
+    font-size: 110px;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 0;
+}
+	
+/* Sobrescrita para date_fields */
+/* Dia */	
+select[name*="1i"] {
+	width: 4.8em;
+}
+
+/* mes */
+select[name*="2i"] {
+	width: 7.2em;
+}
+
+/* ano */
+select[name*="3i"] {
+	width: 3.6em;
+}
+
+/* hora */
+select[name*="4i"] {
+	width: 4.8em;
+}
+
+/* minuto */
+select[name*="5i"] {
+	width: 4.8em;
+}
+
+.dl-horizontal dt {
+	width: 220px;
+}
+
+.dl-horizontal dd {
+    margin-left: 230px;
+}
+
+.table {
+  tbody tr.warning td {
+    background-color: #fcf8e3;
+  }
+}
+

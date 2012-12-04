@@ -1,0 +1,26 @@
+<%- if @announcement.errors.any? %>
+  console.log('Error');
+  $('#editAnnouncementModal').html('<%= escape_javascript(render('form')) %>');
+	$('#editAnnouncementModal').on('hidden', function () {
+		$('#editAnnouncementModal').remove();
+	});  
+<%- else %>
+  console.log('Updated');
+	/* Removendo a linha */
+	$('#announcementAjaxTable').dataTable().fnDeleteRow( document.getElementById("tr_<%=@announcement.id%>"));	
+  $('#editAnnouncementModal').modal('hide');
+	var addId = $('#announcementAjaxTable').dataTable().fnAddData( [
+		"<%=escape_javascript(link_to @announcement.id, announcement_path(@announcement))%>",
+		"<%=escape_javascript(link_to @announcement.title, announcement_path(@announcement))%>",
+		"<%=l @announcement.publication_date%>",
+		"<%=l @announcement.created_at%>",
+		"<%=escape_javascript(link_to t('.edit', :default => t('helpers.links.edit')), edit_announcement_path(@announcement), :class => 'btn btn-mini', :remote => true)%>" + 
+		<% if any_restrict_dependecy?(@announcement) %>
+			" <%=escape_javascript(link_to t('.destroy', :default => t('helpers.links.destroy')), '#', :class => 'btn btn-mini btn-danger', :rel => 'popover', :'data-content' => t('validation.restrict_validation', :dependecie_models => any_restrict_dependecy?(@announcement)), :'data-original-title' => t('selecao_admin.general.atention'))%>"
+		<% else %>
+			" <%=escape_javascript(link_to t('.destroy', :default => t('helpers.links.destroy')), announcement_path(@announcement), :method => :delete, :class => 'btn btn-mini btn-danger', :confirm => t('.confirm', :default => t('helpers.links.confirm', :default => 'Are you sure?')), :remote => true)%>"		
+		<% end %>
+	]);	
+ 	var theNode = $('#announcementAjaxTable').dataTable().fnSettings().aoData[addId[0]].nTr;
+	$(theNode).attr("id", "tr_<%=@announcement.id%>");		
+<%- end %>

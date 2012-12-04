@@ -1,0 +1,14 @@
+<%- if @score_evaluation.errors.any? %>
+  console.log('Error');
+  $('#newScoreEvaluationModal').html('<%= escape_javascript(render('form')) %>');
+<%- else %>
+	console.log('Created');
+  $('#newScoreEvaluationModal').modal('hide');
+	var addId = $('#scoreEvaluationAjaxTable').dataTable().fnAddData( [
+		"<%=escape_javascript(link_to @score_evaluation.id, score_evaluation_path(@score_evaluation))%>",
+		"<%=escape_javascript(link_to @score_evaluation.title, score_evaluation_path(@score_evaluation))%>",
+		"<%=escape_javascript(link_to t('.edit', :default => t('helpers.links.edit')), edit_score_evaluation_path(@score_evaluation), :class => 'btn btn-mini')%> <%=escape_javascript(link_to t('.destroy', :default => t('helpers.links.destroy')), score_evaluation_path(@score_evaluation), :method => :delete, :class => 'btn btn-mini btn-danger', :confirm => t('.confirm', :default => t('helpers.links.confirm', :default => 'Are you sure?')), :remote => true)%>"		
+	]);	
+ 	var theNode = $('#scoreEvaluationAjaxTable').dataTable().fnSettings().aoData[addId[0]].nTr;
+	$(theNode).attr("id", "tr_<%=@score_evaluation.id%>");		
+<%- end %>
