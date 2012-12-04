@@ -59,6 +59,15 @@ module SelecaoAdmin
             begin  
                Rake::Task['db:migrate'].reenable # in case you're going to invoke the same task second time.
                Rake::Task['db:migrate'].invoke  
+               
+               Dir.glob("engines/selecao_admin/db/migrate/*").sort_by{ |f| File.basename(f) }.each do |inm|
+                 Dir.glob("db/migrate/*").sort_by{ |f| File.mtime(f) }.each do |im|
+                   if im.include?(inm.split('/')[4][15..inm.size].split('.')[0].to_s)
+                     FileUtils.rm(im)
+                   end
+                 end
+               end                                            
+               
                puts "\n\n"
                readme "README"                   
             rescue Exception => msg  
