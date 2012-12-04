@@ -1,0 +1,2 @@
+mount SelecaoAdmin::Engine, :at => "/selecao-admin"
+

@@ -18,13 +18,7 @@ module SelecaoAdmin
       # Descricao sumaria do que o generator faz
       desc "Instalador do módulo integra SelecaoAdmin"
       class_option :orm
-      
-      ### Configura as rotas da engine ###
-      def add_selecao_admin_routes
-        selecao_admin_route  = 'mount SelecaoAdmin::Engine, :at => "/selecao-admin"'
-        route selecao_admin_route
-      end     
-            
+                  
       # Cadastra a Engine na base de dados. Necessário para controle de perfis e permissoes.
       def add_integra_engine
         if generating?
