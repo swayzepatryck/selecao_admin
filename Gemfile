@@ -26,7 +26,7 @@ group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', :platforms => :ruby
 
-  gem 'twitter-bootstrap-rails', '2.1.3'
+  gem 'twitter-bootstrap-rails', '2.0.9'
   gem 'font-awesome-rails', '0.3.0'
 
   gem 'uglifier', '>= 1.0.3'

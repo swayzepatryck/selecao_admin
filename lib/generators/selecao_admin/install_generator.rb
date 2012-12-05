@@ -39,32 +39,43 @@ module SelecaoAdmin
       
       def install_migration
          if generating?               
-            ### Instala gems necessarias descritas no Gemfile ###
-            system "bundle"
-                        
+            ### Instala gems de dependencia ###
+            system "bundle"            
+            
             ### Recupera as migrations da engine ###
-            Dir.glob("engines/selecao_admin/db/migrate/*").sort_by{ |f| File.basename(f) }.each do |inm|
+            Dir.glob("engines/selecao_admin/db/migrate/*").sort_by{ |f| File.basename(f) }.each_with_index do |inm, index|
               engine_migrate_file = inm.split('/').last 
-              engine_migrate = engine_migrate_file[15..engine_migrate_file.size].split('.')[0]                 
+              engine_migrate = engine_migrate_file[15..engine_migrate_file.size].split('.')[0]        
 
-              migration_template "../../../db/migrate/#{engine_migrate_file}", "db/migrate/#{engine_migrate}.rb"                                 
+              original_version = engine_migrate_file.split('_').first.to_s
+              migrated_version = (migration_template "../../../db/migrate/#{engine_migrate_file}", "db/migrate/#{engine_migrate}.rb").split('/').last.split('_').first
+                             
+              IntegraEngineMigrated.create(:integra_engine_id => (IntegraEngine.where(:module_name => 'SelecaoAdmin').where(:display_name => 'Seleção Admin').first).id, :original_version => original_version, :migrated_version => migrated_version) if !IntegraEngineMigrated.find_by_original_version(original_version)
             end
             
-            begin  
-               Rake::Task['db:migrate'].reenable # in case you're going to invoke the same task second time.
+            ### Nao migra o que ja foi migrado ###
+            Dir.glob("engines/selecao_admin/db/migrate/*").sort_by{ |f| File.basename(f) }.each do |inm|
+              migrated_version = IntegraEngineMigrated.where(:integra_engine_id => (IntegraEngine.where(:module_name => 'SelecaoAdmin').where(:display_name => 'Seleção Admin').first).id, :original_version => (inm.split('/').last).split('_').first.to_s).first.migrated_version
+              if SchemaMigration.all.map {|sm| sm.version}.include?(migrated_version)
+                FileUtils.rm(Dir.glob("db/migrate/*").select {|m| m.include?(inm.split('/').last[15..inm.size].split('.').first)})                
+              end
+            end             
+            
+            begin              
+               Rake::Task['db:migrate'].reenable 
                Rake::Task['db:migrate'].invoke  
-               
+                              
                Dir.glob("engines/selecao_admin/db/migrate/*").sort_by{ |f| File.basename(f) }.each do |inm|
                  Dir.glob("db/migrate/*").sort_by{ |f| File.mtime(f) }.each do |im|
                    if im.include?(inm.split('/')[4][15..inm.size].split('.')[0].to_s)
                      FileUtils.rm(im)
                    end
                  end
-               end                                            
+               end  
                
                puts "\n\n"
                readme "README"                   
-            rescue Exception => msg  
+            rescue Exception => msg 
                puts "\n\nHouve um erro: \n\n#{msg}"
                Dir.glob("engines/selecao_admin/db/migrate/*").sort_by{ |f| File.basename(f) }.each do |inm|
                  Dir.glob("db/migrate/*").sort_by{ |f| File.mtime(f) }.each do |im|

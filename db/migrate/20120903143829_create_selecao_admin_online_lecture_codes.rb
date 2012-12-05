@@ -6,6 +6,6 @@ class CreateSelecaoAdminOnlineLectureCodes < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :selecao_admin_online_lecture_codes, :online_lecture_id
+    add_index :selecao_admin_online_lecture_codes, :lecture_id
   end
 end
