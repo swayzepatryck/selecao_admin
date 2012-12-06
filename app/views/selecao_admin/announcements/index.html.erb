@@ -4,11 +4,10 @@
 </div>
 
 <div class="form-actions">
-	<button data-controls-modal="newAnnouncementModal" data-backdrop="true" data-keyboard="true" class ="btn btn-primary" onmouseover="sandwich='pastrami';">Criar</i></button>
+	<%= link_to t('.new', :default => t("helpers.links.new")), '#', :class => 'btn btn-primary', :id => 'new_announcement_modal_button'%>
 	<%= link_to t('.back', :default => t("helpers.links.back")),
 	            SelecaoAdmin::path, :class => 'btn'  %>
 </div>
-
 
 <table class="table table-striped" id="announcementAjaxTable">
   <thead>
@@ -28,11 +27,11 @@
         <td><%=l announcement.publication_date %></td>
         <td><%=l announcement.created_at %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+          <%= link_to edit_icon,
                       edit_announcement_path(announcement), :class => 'btn btn-mini', :remote => true %>
 
-					<%= link_to_if(any_restrict_dependecy?(announcement), t('.destroy', :default => t("helpers.links.destroy")), "#", :class => "btn btn-mini btn-danger", :rel => "popover", :"data-content" => t("validation.restrict_validation", :dependecie_models => any_restrict_dependecy?(announcement)), :"data-original-title" => t("selecao_admin.general.atention")) do %>										
-	          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+					<%= link_to_if(any_restrict_dependecy?(announcement), destroy_icon, "#", :class => "btn btn-mini btn-danger", :rel => "popover", :"data-content" => t("validation.restrict_validation", :dependecie_models => any_restrict_dependecy?(announcement)), :"data-original-title" => t("selecao_admin.general.atention")) do %>										
+	          <%= link_to destroy_icon,
 	                      announcement_path(announcement),
 	                      :method => :delete,
 	                      :class => 'btn btn-mini btn-danger',
@@ -45,7 +44,7 @@
   </tbody>
 </table>
 
-<div id="newAnnouncementModal" class="modal hide fade" style="padding: 20px;">
+<div id="new_announcement_modal" class="modal hide fade" style="padding: 20px;">
     <%= render :partial => 'form' %>
 </div>
 

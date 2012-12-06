@@ -4,7 +4,7 @@
 </div>
 
 <div class="form-actions">
-	<%= link_to 'Criar', "#", :"data-controls-modal" => "newScoreEvaluationModal", :"data-backdrop" => true, :"data-keyboard" => true, :class => "btn btn-primary", :onmouseover => "sandwich='pastrami';"  %>
+	<%= link_to 'Criar', "#", :class => "btn btn-primary", :id => 'new_score_evaluation_modal_button' %>
 	<%= link_to t('.back', :default => t("helpers.links.back")),
 	            SelecaoAdmin::path, :class => 'btn'  %>
 </div>
@@ -23,11 +23,11 @@
         <td><%= link_to score_evaluation.id, score_evaluation_path(score_evaluation) %></td>
         <td><%= link_to score_evaluation.title, score_evaluation_path(score_evaluation)  %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+          <%= link_to edit_icon,
                       edit_score_evaluation_path(score_evaluation), :class => 'btn btn-mini', :remote => true %>
 
-					<%= link_to_if(any_restrict_dependecy?(score_evaluation), t('.destroy', :default => t("helpers.links.destroy")), "#", :class => "btn btn-mini btn-danger", :rel => "popover", :"data-content" => t("validation.restrict_validation", :dependecie_models => any_restrict_dependecy?(score_evaluation)), :"data-original-title" => t("selecao_admin.general.atention")) {%>					
-	          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+					<%= link_to_if(any_restrict_dependecy?(score_evaluation), destroy_icon, "#", :class => "btn btn-mini btn-danger", :rel => "popover", :"data-content" => t("validation.restrict_validation", :dependecie_models => any_restrict_dependecy?(score_evaluation)), :"data-original-title" => t("selecao_admin.general.atention")) {%>					
+	          <%= link_to destroy_icon,
 	                      score_evaluation_path(score_evaluation),
 	                      :method => :delete,
 	                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
@@ -40,7 +40,7 @@
   </tbody>
 </table>
 
-<div id="newScoreEvaluationModal" class="modal hide fade" style="padding: 20px; max-height: 500px;">
+<div id="new_score_evaluation_modal" class="modal hide fade" style="padding: 20px; max-height: 500px;">
   <%= render :partial => 'form' %>	
 </div>
 

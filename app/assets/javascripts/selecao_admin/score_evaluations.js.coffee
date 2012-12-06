@@ -15,3 +15,12 @@ jQuery ->
 	      sPrevious: "Anterior"
 	      sNext: "Próximo"
 	      sLast: "Último"
+	
+
+jQuery(document).ready ->
+  $("#new_score_evaluation_modal_button").click ->
+    $("#new_score_evaluation_modal").modal(
+      show: true
+      backdrop: true
+      keyboard: true
+    )

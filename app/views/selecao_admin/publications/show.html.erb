@@ -15,9 +15,9 @@
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               publications_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+  <%= link_to edit_icon,
               edit_publication_path(@publication), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+  <%= link_to destroy_icon,
               publication_path(@publication),
               :method => 'delete',
               :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),

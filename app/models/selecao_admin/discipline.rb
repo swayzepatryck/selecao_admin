@@ -14,6 +14,5 @@ module SelecaoAdmin
     def self.icon
       return "icon-certificate"
     end
-    
   end
 end

@@ -3,11 +3,11 @@
   $('#disciplineModal').html('<%= escape_javascript(render('form')) %>');
 <%- else %>
 	console.log('Created');
-  $('#disciplineModal').modal('hide');
+  $('#new_discipline_modal').modal('hide');
 	var addId = $('#disciplineAjaxTable').dataTable().fnAddData( [
 		"<%=escape_javascript(link_to @discipline.id, discipline_path(@discipline))%>",
 		"<%=escape_javascript(link_to @discipline.name, discipline_path(@discipline))%>",
-		"<%=escape_javascript(link_to t('.edit', :default => t('helpers.links.edit')), edit_announcement_path(@discipline), :class => 'btn btn-mini')%> <%=escape_javascript(link_to t('.destroy', :default => t('helpers.links.destroy')), announcement_path(@discipline), :method => :delete, :class => 'btn btn-mini btn-danger', :confirm => t('.confirm', :default => t('helpers.links.confirm', :default => 'Are you sure?')), :remote => true)%>"		
+		"<%=escape_javascript(link_to edit_icon, edit_announcement_path(@discipline), :class => 'btn btn-mini')%> <%=escape_javascript(link_to destroy_icon, announcement_path(@discipline), :method => :delete, :class => 'btn btn-mini btn-danger', :confirm => t('.confirm', :default => t('helpers.links.confirm', :default => 'Are you sure?')), :remote => true)%>"		
 	]);	
  	var theNode = $('#disciplineAjaxTable').dataTable().fnSettings().aoData[addId[0]].nTr;
 	$(theNode).attr("id", "tr_<%=@discipline.id%>");		

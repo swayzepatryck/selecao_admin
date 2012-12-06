@@ -1,6 +1,16 @@
 module SelecaoAdmin
   module ApplicationHelper
     
+    #### Icone de editar #####
+    def edit_icon
+      "<i class='icon-edit'></i>".html_safe
+    end
+    
+    def destroy_icon
+      "<i class='icon-trash'></i>".html_safe
+    end
+    
+    
     ######### belongs_to_menu methods ############
     @@views_path = Dir.glob("**/*/*").delete_if{|x| !x.include?('views')}
     

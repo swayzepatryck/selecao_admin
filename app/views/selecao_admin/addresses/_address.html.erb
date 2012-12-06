@@ -8,9 +8,9 @@
   <td><%=c address.city.state.name %></td>
   <td><%=c address.postal_code %></td>
   <td>
-    <%= link_to t('.edit', :default => t("helpers.links.edit")),
+    <%= link_to edit_icon,
                 edit_address_path(address), :class => 'btn btn-mini', :remote => true %>
-    <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+    <%= link_to destroy_icon,
                 address_path(address),
                 :method => :delete,
                 :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },

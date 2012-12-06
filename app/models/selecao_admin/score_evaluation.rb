@@ -7,7 +7,7 @@ module SelecaoAdmin
     validates_presence_of :disciplines
     
     has_many :enrollment_score_evaluations
-    has_many :enrollments, :through => :entry_process_score_evaluations, :dependent => :restrict    
+    has_many :enrollments, :through => :enrollment_score_evaluations, :dependent => :restrict    
     
     validates_presence_of :title
     validates_uniqueness_of :title

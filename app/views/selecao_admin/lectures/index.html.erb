@@ -32,9 +32,9 @@
         <td><%= link_to lecture.campus.name, campus_path(lecture.campus) %></td>
         <td><%=l lecture.created_at %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+          <%= link_to edit_icon,
                       edit_lecture_path(lecture), :class => 'btn btn-mini' %>
-	          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+	          <%= link_to destroy_icon,
 	                      lecture_path(lecture),
 	                      :method => :delete,
 	                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),

@@ -9,8 +9,8 @@ module SelecaoAdmin
     def as_json(options = {})
       {
         :sEcho => params[:sEcho].to_i,
-        :iTotalRecords => User.count,
-        :iTotalDisplayRecords => users.count,
+        :iTotalRecords => SelecaoAdmin::Enrolled.count,
+        :iTotalDisplayRecords => enrolleds.count,
         :aaData => data
       }
     end
@@ -30,26 +30,26 @@ module SelecaoAdmin
 =end
   
     def data
-      users.map do |user|
+      enrolleds.map do |enrolled|
         [ 
-          link_to(user.enrolled.id, user.enrolled), 
-          link_to(user.name, user.enrolled), 
-          user.login
+          link_to(enrolled.id, enrolled), 
+          link_to(enrolled.user.name, enrolled), 
+          enrolled.user.login          
         ]
       end
     end    
 
-    def users
-      @users ||= fetch_users
+    def enrolleds
+      @enrolleds ||= fetch_enrolleds
     end
 
-    def fetch_users
-      users = User.order("#{sort_column} #{sort_direction}").where('users.admin is null or users.admin = false').where('users.employee is null or users.employee = false')
+    def fetch_enrolleds
+      enrolleds =  SelecaoAdmin::Enrolled.joins(:user).order("#{sort_column} #{sort_direction}")
       if params[:sSearch].present?
-        users =  User.where('(TRANSLATE(lower(users.name), \'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ\', \'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC\')) like ? or login like ?',"%#{params[:sSearch].downcase}%","%#{params[:sSearch].downcase}%").where('users.admin is null or users.admin = false').where('users.employee is null or users.employee = false').order("#{sort_column} #{sort_direction}")
+        enrolleds =  SelecaoAdmin::Enrolled.joins(:user).where('(TRANSLATE(lower(users.name), \'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ\', \'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC\')) like ? or login like ?',"%#{params[:sSearch].downcase}%","%#{params[:sSearch].downcase}%").order("#{sort_column} #{sort_direction}")
       end
-      users = users.page(page).per_page(per_page)      
-      users
+      enrolleds = enrolleds.page(page).per_page(per_page)      
+      enrolleds
     end
 
     def page
@@ -61,7 +61,8 @@ module SelecaoAdmin
     end
 
     def sort_column
-      columns = %w[id (TRANSLATE(users.name,\ 'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ',\ 'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC')) login]
+      columns = %w[id (TRANSLATE(users.name,\ 'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ',\ 'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC')) users.login]
+      #columns = %w[id]
       columns[params[:iSortCol_0].to_i]
     end
 
@@ -69,4 +70,4 @@ module SelecaoAdmin
       params[:sSortDir_0] == "desc" ? "desc" : "asc"
     end
   end
-end 
+end

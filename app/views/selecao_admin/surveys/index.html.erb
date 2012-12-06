@@ -28,9 +28,9 @@
         <td><%= link_to survey.title, survey_path(survey)  %></td>
         <td><%=l survey.created_at %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+          <%= link_to edit_icon,
                       edit_survey_path(survey), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+          <%= link_to destroy_icon,
                       survey_path(survey),
                       :method => :delete,
                       :confirm => t('.confirm', :default => t("confirmation.survey.destroy_with_dependecies_warning", :default => 'Are you sure?')),

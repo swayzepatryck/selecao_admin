@@ -15,3 +15,11 @@ jQuery ->
 	      sPrevious: "Anterior"
 	      sNext: "Próximo"
 	      sLast: "Último"
+
+jQuery(document).ready ->
+  $("#new_announcement_modal_button").click ->
+    $("#new_announcement_modal").modal(
+      show: true
+      backdrop: true
+      keyboard: true
+    )
