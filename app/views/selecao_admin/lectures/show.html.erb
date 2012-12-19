@@ -6,12 +6,12 @@
 <dl class="dl-horizontal">
 	<dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
   <dd><%= @lecture.title %> (<%=@lecture.lecture_type.title%>)</dd>
-  <dt><strong><%= model_class.human_attribute_name(:announcement) %>:</strong></dt>
-  <dd><%= @lecture.announcement.title %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:campus) %>:</strong></dt>
-  <dd><%= @lecture.campus.name %></dd>
   
 	<% if @lecture.lecture_type_id == 1 %>
+		<dt><strong><%= model_class.human_attribute_name(:announcement) %>:</strong></dt>
+  	<dd><ul><% @lecture.announcements.each {|announcement|%><li><%= announcement.title %></li><%}%></ul></dd>
+	  <dt><strong><%= model_class.human_attribute_name(:campus) %>:</strong></dt>
+	  <dd><%= @lecture.campus.name %></dd>
 		<dt><strong><%= model_class.human_attribute_name(:lecture_date) %>:</strong></dt>
 	  <dd><%= @lecture.lecture_date %></dd>
 	  <dt><strong><%= model_class.human_attribute_name(:lecture_time) %>:</strong></dt>
@@ -21,6 +21,8 @@
 	  <dt><strong><%= model_class.human_attribute_name(:location) %>:</strong></dt>
 	  <dd><%= @lecture.location %></dd>
 	<% elsif @lecture.lecture_type_id == 2 %>
+		<dt><strong><%= model_class.human_attribute_name(:enrollment) %>:</strong></dt>
+	  <dd><%= @lecture.enrollment.short_title %></dd>
 		<dt><strong><%= model_class.human_attribute_name(:video_url) %>:</strong></dt>
 	  <dd><%= @lecture.video_url %></dd>
 	  <dt><strong><%= model_class.human_attribute_name(:online_lecture_codes) %>:</strong></dt>
@@ -29,7 +31,7 @@
 </dl>
 
 <div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
+  <%= link_to back_icon,
               lectures_path, :class => 'btn'  %>
   <%= link_to edit_icon,
               edit_lecture_path(@lecture), :class => 'btn' %>

@@ -21,6 +21,8 @@ module SelecaoAdmin
     has_many :drawing_enrolleds
     has_many :enrollments, :through => :drawing_enrolleds    
     
+    belongs_to :state, :foreign_key => :id_card_issuer
+    
     def self.icon
       return 'icon-user'
     end           

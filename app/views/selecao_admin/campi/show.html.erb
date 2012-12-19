@@ -1,6 +1,6 @@
 <%- model_class = SelecaoAdmin::Campus -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1><%=t '.title', :default => model_class.model_name.human %> <%=@campus.name%></h1>
 </div>
 
 <dl class="dl-horizontal">
@@ -13,7 +13,7 @@
 </dl>
 
 <div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
+  <%= link_to back_icon,
               campi_path, :class => 'btn'  %>
   <%= link_to edit_icon,
               edit_campus_path(@campus), :class => 'btn' %>

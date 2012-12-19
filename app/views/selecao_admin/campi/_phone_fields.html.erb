@@ -1,8 +1,10 @@
 
 <fieldset>
 	<%= f.collection_select :phone_type_id, SelecaoAdmin::PhoneType.all, :id, :title, :prompt => true %>
-	<%= f.text_field :prefix, :class => 'text_field span1' %>
-	<%= f.text_field :suffix, :class => 'text_field span2' %>				
+	<%= f.text_field :description, :class => 'text_field phoneDescription', :placeholder => t('activerecord.attributes.selecao_admin/phone.description'), :maxlength => 20  %>				
+	<%= f.text_field :prefix, :class => 'text_field phonePrefix', :placeholder => t('activerecord.attributes.selecao_admin/phone.prefix'), :maxlength => 2 %>
+	<%= f.text_field :suffix, :class => 'text_field phoneSuffix', :placeholder => t('activerecord.attributes.selecao_admin/phone.suffix'), :maxlength => 8  %>				
+	
 	<hr>
 	<%= f.hidden_field :_destroy %>
   <%= link_to t("selecao_admin.general.remove_phone"), '#', :class => "remove_fields pull-right btn-mini" %>  	

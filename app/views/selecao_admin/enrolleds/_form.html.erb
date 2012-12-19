@@ -1,10 +1,12 @@
 <%= form_for @enrolled, :html => { :class => 'form-horizontal' } do |f| %>
+	<% if action_name == 'new'%>
 	<div class="control-group">
 	  <%= f.label :user_id, :class => 'control-label'%>
 	  <div class="controls">
 			<%= f.collection_select :user_id, User.order(:name), :id, :name, {:prompt => true}, {:multiple=>false, :class => 'span4', :"data-placeholder"=> t("validation.chosen.text_single"), :"data-no_results_text" => t("validation.chosen.no_results_match")} %>
 	  </div>
 	</div>
+	<% end %>
   <div class="control-group">
     <%= f.label :birth_date, :class => 'control-label' %>
     <div class="controls">
@@ -32,8 +34,8 @@
   <div class="control-group">
     <%= f.label :id_card_issuer, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :id_card_issuer, :class => 'text_field' %>
-    </div>
+     <%= f.collection_select :id_card_issuer, SelecaoAdmin::State.all, :id, :name, :prompt => true %>
+     </div>
   </div>
   <div class="control-group">
     <%= f.label :fathers_name, :class => 'control-label' %>

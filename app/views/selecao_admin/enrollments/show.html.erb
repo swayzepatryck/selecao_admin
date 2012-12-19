@@ -31,7 +31,7 @@
 </dl>
 
 <div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
+  <%= link_to back_icon,
               announcement_enrollments_path(@enrollment.announcement), :class => 'btn'  %>
   <%= link_to edit_icon,
               edit_announcement_enrollment_path(@enrollment.announcement, @enrollment), :class => 'btn' %>

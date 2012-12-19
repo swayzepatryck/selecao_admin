@@ -3,12 +3,10 @@ SelecaoAdmin::Engine.routes.draw do
   match "/settings" => "settings#index"
   match "/reports" => "reports#index"
   match "/find/drawing_student_quotas/:enrollment_id" => "drawings#drawing_student_quotas"  
-  match "/json_entry_process_mode/:id" => "entry_processes#json_entry_process_mode"
-  
+  match "/json_entry_process_mode/:id" => "entry_processes#json_entry_process_mode"  
   match "drawings_transfer_vacancy" => "drawings#transfer_vacancy"
-  
-  resources :enrolleds_data_table
-  
+
+  resources :enrolleds_data_table  
   resources :enrolled_scores
   resources :drawings
   resources :enrollments_enrolleds
@@ -41,6 +39,7 @@ SelecaoAdmin::Engine.routes.draw do
   resources :phone_types
   resources :address_types
   resources :cities
+  resources :employees
   resources :states
   resources :marital_statuses
   resources :genres

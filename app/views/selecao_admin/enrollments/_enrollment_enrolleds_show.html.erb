@@ -23,7 +23,8 @@
 					<td><%=ee.enrolled.user.login%></td>
 					<td><%=ee.student_quota.abbreviation%></td>
 					<td><%=ee.enrolled.user.email%></td>
-					<td><%=ee.enrolled.phones%></td>
+					<td><ul><%ee.enrolled.phones.each {|phone|%><li><%="#{phone.prefix} #{phone.suffix}"%></li><%}%></ul></td>
+					
 					<td>
 					  <%= link_to destroy_icon,
 					              enrollment_enrolled_path(ee),

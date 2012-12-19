@@ -2,3 +2,15 @@
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
 */
+
+.phonePrefix {
+	width: 27px;
+}
+
+.phoneSuffix {
+	width: 85px;
+}
+
+.phoneDescription {
+	width: 160px;
+}

@@ -11,9 +11,10 @@ module SelecaoAdmin
     validates_presence_of :course_id, :survey_id, :entry_process_id, :start_date, :end_date, :start_time, :end_time, :number_of_vacancies
     
     validates_uniqueness_of :course_id, :scope => [:announcement_id]
+    
     validates_presence_of :lecture_type_id
-    validates_presence_of :student_quotas, :message => I18n.t("validation.entry_process.blank_student_quota"), :if => "entry_process.entry_process_mode_id == 2"
-    validates_presence_of :score_evaluations, :message => I18n.t("validation.entry_process.blank_score_evaluation"), :if => "entry_process.entry_process_mode_id == 1"    
+    validates_presence_of :student_quotas, :message => I18n.t("validation.entry_process.blank_student_quota")
+    validates_presence_of :score_evaluations, :message => I18n.t("validation.entry_process.blank_score_evaluation"), :if => "entry_process.try(:entry_process_mode_id) and entry_process.entry_process_mode_id == 1"    
     
     has_many :enrollment_enrolleds, :dependent => :destroy
     has_many :enrolleds, :through => :enrollment_enrolleds, :dependent => :restrict

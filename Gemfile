@@ -33,6 +33,9 @@ group :assets do
   gem 'jquery-datatables-rails', :github => 'rweng/jquery-datatables-rails'  
 end
 
+gem "paperclip", "2.8.0"
+
+
 
 
 

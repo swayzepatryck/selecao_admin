@@ -1,13 +1,20 @@
-	<div class="control-group">
-		<%= f.label :video_url, :class => 'control-label' %>
-		<div class="controls">
-		  <%= f.text_field :video_url, :class => 'text_field span8' %>
-		</div>
+<div class="control-group">
+	<%= f.label :enrollment, :class => 'control-label' %>
+	<div class="controls">
+	  <%= f.collection_select :enrollment_id, SelecaoAdmin::Enrollment.all, :id, :short_title, :prompt => true, :class => 'span6' %>
 	</div>
-	<hr>
-	
-	<%= f.fields_for :online_lecture_codes do |builder| %>
-		<%= render :partial => 'online_lecture_code_fields', :locals => {:f => builder} %>		
-	<% end %>
-	<%= link_to_add_fields t("selecao_admin.general.add_online_lecture_code"), f, :online_lecture_codes %>
-	<label class="message"><%=@lecture.errors[:online_lecture_codes]%></label>						
+</div>
+
+<div class="control-group">
+	<%= f.label :video_url, :class => 'control-label' %>
+	<div class="controls">
+	  <%= f.text_field :video_url, :class => 'text_field span8' %>
+	</div>
+</div>
+<hr>
+
+<%= f.fields_for :online_lecture_codes do |builder| %>
+	<%= render :partial => 'online_lecture_code_fields', :locals => {:f => builder} %>		
+<% end %>
+<%= link_to_add_fields t("selecao_admin.general.add_online_lecture_code"), f, :online_lecture_codes %>
+<label class="message"><%=@lecture.errors[:online_lecture_codes]%></label>						

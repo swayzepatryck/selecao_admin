@@ -1,6 +1,7 @@
 module SelecaoAdmin
   module ApplicationHelper
     
+    
     #### Icone de editar #####
     def edit_icon
       "<i class='icon-edit'></i>".html_safe
@@ -10,6 +11,17 @@ module SelecaoAdmin
       "<i class='icon-trash'></i>".html_safe
     end
     
+    def back_icon
+      "<i class='icon-circle-arrow-left'></i>".html_safe
+    end
+        
+    def new_icon(options = {})
+        if options[:font_size]
+          "<i class='mpicon-pen-paper' style='font-size: #{options[:font_size]}'></i>".html_safe 
+        else
+          "<i class='mpicon-pen-paper'></i>".html_safe 
+        end
+    end
     
     ######### belongs_to_menu methods ############
     @@views_path = Dir.glob("**/*/*").delete_if{|x| !x.include?('views')}

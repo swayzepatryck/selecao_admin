@@ -1,6 +1,7 @@
 module SelecaoAdmin
   class Announcement < ActiveRecord::Base
-    attr_accessible :publication_date, :title, :another_controller
+    attr_accessible :publication_date, :title, :another_controller, :announcement_file
+    has_attached_file :announcement_file, :styles => { :medium => "300x300>", :thumb => "100x100>" }
     
     validates_presence_of :publication_date, :title
     validates_uniqueness_of :title

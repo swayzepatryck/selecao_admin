@@ -7,7 +7,7 @@
 	<%= link_to t('.new', :default => t("helpers.links.new")),
 	            new_lecture_path,
 	            :class => 'btn btn-primary' %>
-	<%= link_to t('.back', :default => t("helpers.links.back")),
+	<%= link_to back_icon,
 	            SelecaoAdmin::path, :class => 'btn'  %>
 </div>
 
@@ -28,18 +28,18 @@
       <tr id="tr_<%=lecture.id%>">
         <td><%= link_to lecture.id, lecture_path(lecture) %></td>
         <td><%= link_to lecture.title, lecture_path(lecture) %></td>
-        <td><%= link_to lecture.announcement.title, announcement_path(lecture.announcement) %></td>
+        <td><ul><% lecture.announcements.each {|a|%><li><%=link_to a.title, announcement_path(a)%></li><%}%></ul></td>
         <td><%= link_to lecture.campus.name, campus_path(lecture.campus) %></td>
         <td><%=l lecture.created_at %></td>
         <td>
           <%= link_to edit_icon,
                       edit_lecture_path(lecture), :class => 'btn btn-mini' %>
-	          <%= link_to destroy_icon,
-	                      lecture_path(lecture),
-	                      :method => :delete,
-	                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-	                      :class => 'btn btn-mini btn-danger',
-	 											:remote => true %>
+		          <%= link_to destroy_icon,
+		                      lecture_path(lecture),
+		                      :method => :delete,
+		                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+		                      :class => 'btn btn-mini btn-danger',
+		 											:remote => true %>
         </td>
       </tr>
     <% end %>

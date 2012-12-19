@@ -1,4 +1,19 @@
 <div class="control-group">
+	<%= f.label :announcement, :class => 'control-label' %>
+	<div class="controls">
+		<%= f.collection_select :announcement_ids, SelecaoAdmin::Announcement.order(:id), :id, :title, {:prompt => false}, {:multiple=>true, :class => 'chosen-announcements span3', :"data-placeholder"=> t("validation.chosen.text_multiple"), :"data-no_results_text" => t("validation.chosen.no_results_match")} %>
+  	<script type="text/javascript" charset="utf-8">
+			$('.chosen-announcements').chosen();			
+		</script>	
+	</div>
+</div>
+<div class="control-group">
+	<%= f.label :campus, :class => 'control-label' %>
+	<div class="controls">
+	  <%= f.collection_select :campus_id, SelecaoAdmin::Campus.all, :id, :name, :prompt => true %>
+	</div>
+</div>
+<div class="control-group">
 	<%= f.label :lecture_date, :class => 'control-label' %>
 	<div class="controls">
 	  <%= f.date_select :lecture_date, :class => 'text_field span8' %>

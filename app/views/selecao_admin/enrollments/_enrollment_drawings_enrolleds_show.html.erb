@@ -28,7 +28,7 @@
 						<td><%=ed.enrolled.user.login%></td>
 						<td><%=ed.student_quota.abbreviation%></td>
 						<td><%=ed.enrolled.user.email%></td>
-						<td><%=ed.enrolled.phones%></td>
+						<td><ul><%ed.enrolled.phones.each do {|phone|%><li><%="#{phone.prefix} #{phone.suffix}"%></li<%}%></ul></td>
 						<td>
 						  <%= link_to destroy_icon,
 						              'www.google.com.br',

@@ -1,18 +1,4 @@
 <%= form_for @lecture, :html => { :class => 'form-horizontal' } do |f| %>
-	<div class="control-group">
-		<%= f.label :announcement, :class => 'control-label' %>
-		<div class="controls">
-		  <%= f.collection_select :announcement_id, SelecaoAdmin::Announcement.all, :id, :title, :prompt => true, :class => 'span6' %>
-		</div>
-	</div>
-
-	<div class="control-group">
-		<%= f.label :campus, :class => 'control-label' %>
-		<div class="controls">
-		  <%= f.collection_select :campus_id, SelecaoAdmin::Campus.all, :id, :name, :prompt => true %>
-		</div>
-	</div>
-
 	<div class="control-group">				
 			<%= f.label :lecture_type_id, :class => 'control-label' %>
 			<div class="controls">		
@@ -31,9 +17,8 @@
 					});		
 				</script>
 			<% end %>			
-  </div>
-
-	
+  </div>	
+		
 	<div class="control-group">
 		<%= f.label :title, :class => 'control-label' %>
 		<div class="controls">

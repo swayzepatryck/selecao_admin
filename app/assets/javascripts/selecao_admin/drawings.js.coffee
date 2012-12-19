@@ -1,8 +1,8 @@
 jQuery ->
   $('#drawing_student_quota_ids').chosen()
 
-jQuery ->
-  $('#drawing_employee_id').chosen()
+#jQuery ->
+#  $('#drawing_employee_id').select2()
 
 jQuery ->
   $('#drawing_enrollment_id').chosen()

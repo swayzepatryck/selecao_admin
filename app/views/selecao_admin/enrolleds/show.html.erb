@@ -22,14 +22,18 @@
   <dd><%=c @enrolled.fathers_name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:mothers_name) %>:</strong></dt>
   <dd><%=c @enrolled.mothers_name %></dd>
- <dt><strong><%= model_class.human_attribute_name(:addresses) %>:</strong></dt>
-  <dd><% @enrolled.addresses.each {|c|%><%= c.short_address%><br><%}%></dd>
-  <dt><strong><%= model_class.human_attribute_name(:phones) %>:</strong></dt>
-  <dd><% @enrolled.phones.each {|c|%><%= c.short_phone%><br><%}%></dd>
+ 	<% if @enrolled.addresses.any?%>
+		<dt><strong><%= model_class.human_attribute_name(:addresses) %>:</strong></dt>
+	  <dd><% @enrolled.addresses.each {|c|%><%= c.short_address%><br><%}%></dd>
+  <% end %>
+ 	<% if @enrolled.phones.any?%>
+		<dt><strong><%= model_class.human_attribute_name(:phones) %>:</strong></dt>
+	  <dd><ul><% @enrolled.phones.each {|c|%><li><%= c.short_phone%></li><%}%></ul></dd>
+	<% end %>
 </dl>
 
 <div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
+  <%= link_to back_icon,
               enrolleds_path, :class => 'btn'  %>
   <%= link_to edit_icon,
               edit_enrolled_path(@enrolled), :class => 'btn' %>

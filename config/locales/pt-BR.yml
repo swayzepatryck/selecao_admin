@@ -139,8 +139,9 @@ pt-BR:
         sequence_number: "Nº Sequencial"
       selecao_admin/phone:
         phone_type_id: "Tipo"
-        prefix: "Prefixo"
-        suffix: "Sufixo"
+        prefix: "ddd"
+        suffix: "Telefone"
+        description: "Setor"
       selecao_admin/campus:
         name: "Nome"
         addresses: "Endereços"
@@ -159,6 +160,7 @@ pt-BR:
         location: "Local"
         online_lecture_codes: "Codigos de palestra"
         announcement: "Edital"
+        enrollment: "Inscrição"
       selecao_admin/survey:
         title: "Título"
         survey_code: "Código"
@@ -168,6 +170,7 @@ pt-BR:
         title: "Título"
         publication_date: "Data de publicação"
         created_at: "Criado em"
+        announcement_file: "Arquivo do edital"
       selecao_admin/publication:
         title: "Título"
         publication_text: "Texto"

@@ -15,7 +15,7 @@
 <% end %>
 
 <%= form_for @score_evaluation, :remote => true, :html => { :class => 'form-horizontal', :id => 'score_evaluation_form' } do |f| %>
-	<div class="modal-body">
+	<div class="modal-body score_evaluation_modal_body">
 		<div class="control-group">
 	    <%= f.label :title, :class => 'control-label' %>
 	    <div class="controls">
@@ -38,7 +38,7 @@
 	  <div class="control-group">
 	    <%= f.label :disciplines, :class => 'control-label' %>
 	    <div class="controls">
-	    	<%= f.collection_select :discipline_ids, SelecaoAdmin::Discipline.order(:name), :id, :name, {:prompt => false}, {:multiple=>true, :class => 'chosen-disciplines span3', :"data-placeholder"=> t("validation.chosen.text_multiple"), :"data-no_results_text" => t("validation.chosen.no_results_match")} %>
+	    	<%= f.collection_select :discipline_ids, SelecaoAdmin::Discipline.order(:id), :id, :name, {:prompt => false}, {:multiple=>true, :class => 'chosen-disciplines span3', :"data-placeholder"=> t("validation.chosen.text_multiple"), :"data-no_results_text" => t("validation.chosen.no_results_match")} %>
 				<%= show_multiple_error_messages(f, :disciplines) %>
 	    </div>
 	  </div>		  

@@ -5,16 +5,18 @@
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @announcement.title %></dd>
+  <dd id="announcement_title"><%= @announcement.title %></dd>
   <dt><strong><%= model_class.human_attribute_name(:publication_date) %>:</strong></dt>
-  <dd><%=l @announcement.publication_date %></dd>
+  <dd id="publication_date"><%=l @announcement.publication_date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:announcement_file) %>:</strong></dt>
+  <dd><%= link_to @announcement.announcement_file_file_name, @announcement.announcement_file.url %></dd>
 </dl>
 
 <div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
+  <%= link_to back_icon,
               announcements_path, :class => 'btn'  %>
   <%= link_to edit_icon,
-              edit_announcement_path(@announcement), :class => 'btn' %>
+              edit_announcement_path(@announcement), :class => 'btn', :remote => true %>
   <%= link_to destroy_icon,
               announcement_path(@announcement),
               :method => 'delete',
@@ -24,3 +26,5 @@
 
 <%= render :partial => 'selecao_admin/sidebars/announcement_enrollment' %>
 <hr>
+
+
