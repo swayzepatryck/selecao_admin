@@ -14,7 +14,7 @@ gem "jquery-rails"
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
 
-gem 'spinjs-rails'
+gem 'spinjs-rails', '0.0.4'
 
 # To use debugger
 # gem 'ruby-debug'

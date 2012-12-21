@@ -10,6 +10,7 @@ module SelecaoAdmin
   
       respond_to do |format|
         format.html # index.html.erb
+        format.csv { render :text => @enrollments.to_csv }
         format.json { render :json => @enrollments }
       end
     end
@@ -18,9 +19,11 @@ module SelecaoAdmin
     # GET /enrollments/1.json
     def show
       @enrollment = Enrollment.find(params[:id])
+      @enrollment_csv = Enrollment.where(:id => params[:id])
   
       respond_to do |format|
         format.html # show.html.erb
+        format.csv { render :text => @enrollment_csv.to_csv(params[:score_evaluation_id]) }        
         format.json { render :json => @enrollment }
       end
     end
@@ -77,15 +80,27 @@ module SelecaoAdmin
     # DELETE /enrollments/1
     # DELETE /enrollments/1.json
     def destroy
-      @enrollment = Enrollment.find(params[:id])
-      @enrollment.destroy
-  
-      respond_to do |format|
-        format.html { redirect_to announcement_enrollments_url }
-        format.json { head :no_content }
-        format.js
-      end
+      if params[:score_evaluation_id]
+        EnrolledScore.where(:enrollment_id => params[:id]).where(:score_evaluation_id => params[:score_evaluation_id]).delete_all
+        redirect_to announcement_enrollment_path(params[:announcement_id],request.referrer.split('/').last), :notice => "Notas excluidas com sucesso"
+        
+      else
+        @enrollment = Enrollment.find(params[:id])
+        @enrollment.destroy        
+        
+        respond_to do |format|
+          format.html { redirect_to announcement_enrollments_url }
+          format.json { head :no_content }
+          format.js
+        end        
+      end      
     end
+    
+    def import_scores
+      Enrollment.import_scores(params[:file], params[:score_evaluation_id], request.referrer.split('/').last)
+      redirect_to announcement_enrollment_path(params[:announcement_id],request.referrer.split('/').last), :notice => "Notas importadas com sucesso."
+    end
+    
     
     private
     

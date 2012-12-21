@@ -87,6 +87,7 @@ pt-BR:
       selecao_admin/survey_question: "Pergunta"
       selecao_admin/enrolled: "Candidato"
       selecao_admin/lecture_presence: "Presença em Palestra"
+      selecao_admin/enrolled_score: "Nota"
       selecao_admin/enrollment_enrolled: "Inscrito"
       selecao_admin/drawing_enrolled: "Sorteados"
     attributes:
@@ -196,6 +197,7 @@ pt-BR:
         student_quotas: "Reservas de vagas"
         score_evaluations: "Avaliações"
         lecture_type: Tipo de palestra
+        export_score_evaluation_unique_ids: "Exportar CPFs"
       selecao_admin/course:
         name: "Nome"
         course_code: "Código"

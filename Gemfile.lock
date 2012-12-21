@@ -148,7 +148,7 @@ DEPENDENCIES
   paperclip (= 2.8.0)
   sass-rails (~> 3.2.3)
   selecao_admin!
-  spinjs-rails
+  spinjs-rails (= 0.0.4)
   therubyracer
   twitter-bootstrap-rails (= 2.0.9)
   uglifier (>= 1.0.3)

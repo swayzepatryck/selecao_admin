@@ -31,7 +31,9 @@ SelecaoAdmin::Engine.routes.draw do
   resources :entry_processes
   resources :entry_process_modes
   resources :announcements do
-    resources :enrollments    
+    resources :enrollments do
+      collection { post :import_scores }
+    end    
   end
   
   resources :course_shifts

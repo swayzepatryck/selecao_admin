@@ -28,6 +28,7 @@ module SelecaoAdmin
     validate :start_date_x_end_date
     
     has_one :drawing, :dependent => :destroy
+    has_many :enrolled_scores
     
     before_update :check_entry_process_mode
     
@@ -51,7 +52,36 @@ module SelecaoAdmin
     end  
     
     before_destroy :remove_score_evaluations
-    before_destroy :remove_student_quotas      
+    before_destroy :remove_student_quotas    
+    
+    def self.to_csv(se)
+      CSV.generate do |csv|        
+        all.each do |enrollment|
+          csv << enrollment.enrollment_enrolleds.select {|ee| ee.score_evaluation_id == se.to_i}.map {|ee| ee.enrolled_id}.sort.map {|enrolled_id| User.find(SelecaoAdmin::Enrolled.find(enrolled_id).user_id).login.to_s}
+        end
+      end
+    end  
+    
+    def self.import_scores(file, score_evaluation_id, enrollment_id)
+      disciplines = ScoreEvaluation.find(score_evaluation_id).disciplines.order(:id)
+      
+      CSV.foreach(file.path, :headers => false) do |row| 
+        i = 0
+        row.first.split(';')[3..7].each do |score|
+          enrolled = User.find_by_login(row.first.split(';')[1].to_s).enrolled
+
+          enrolled_score = EnrolledScore.find_by_enrolled_id_and_discipline_id_and_enrollment_id(enrolled.id, disciplines[i].id, enrollment_id) || EnrolledScore.new
+          enrolled_score.score = score
+          enrolled_score.discipline_id = disciplines[i].id
+          enrolled_score.enrolled_id = enrolled.id
+          enrolled_score.enrollment_id = enrollment_id    
+          enrolled_score.score_evaluation_id = score_evaluation_id       
+          
+          i = i + 1
+          enrolled_score.save!            
+        end          
+      end
+    end    
 
     private
     
@@ -62,5 +92,7 @@ module SelecaoAdmin
     def remove_student_quotas     
       self.student_quotas.delete_all
     end  
+    
+    
   end
 end

@@ -1,0 +1,33 @@
+<%- model_class = SelecaoAdmin::Enrolled -%>
+<h1><%= SelecaoAdmin::EnrolledScore.model_name.human.pluralize%> </h1>
+<hr>
+
+<% @enrollment.score_evaluations.each do |score_evaluation| %>
+  <h4><%=score_evaluation.title%></h4><hr>
+	<table class="table table-bordered table-striped enrolledScoresAjaxTable">
+	  <thead>
+	    <tr>
+	      <th><%= model_class.human_attribute_name(:name) %></th>
+				<% score_evaluation.disciplines.order(:id).each do |discipline| %>
+					<th><%= discipline.name %></th>		      
+				<% end %>
+	    </tr>
+	  </thead>
+	  <tbody>
+				<% scores_by_enrolled = @enrollment.enrolled_scores.where(:score_evaluation_id => score_evaluation.id).group_by {|ee| ee.enrolled_id} %>
+
+				<% scores_by_enrolled.keys.sort.each do |enrolled_id| %>
+					<tr>
+						<td><%=SelecaoAdmin::Enrolled.find(enrolled_id).user.name%></td>
+						<% scores_by_enrolled[enrolled_id].each do |enrolled_score| %>
+							<td><%=enrolled_score.score%></td>
+						<% end %>					
+		      </tr>	      
+				<% end %>
+	  </tbody>
+	</table>
+	<hr>
+	<br/>
+<% end %>
+
+
