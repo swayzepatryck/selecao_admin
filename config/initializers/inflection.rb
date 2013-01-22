@@ -9,5 +9,6 @@ ActiveSupport::Inflector.inflections do |inflect|
    inflect.irregular 'publicação', 'publicações'   
    inflect.irregular 'presença em palestra', 'presenças em palestras'   
    inflect.irregular 'edição ENEM', 'edições ENEM'   
+   inflect.irregular 'área de conhecimento', 'áreas de conhecimentos'   
 end
 
