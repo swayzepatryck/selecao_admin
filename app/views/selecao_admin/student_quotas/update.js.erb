@@ -1,8 +1,6 @@
 <%- if @student_quota.errors.any? %>
-  console.log('Error');
 	$("#editStudentQuotaModal").html("<%= escape_javascript(render 'form') %>")	
 <%- else %>
-  console.log('Atualizado');
 	/* Removendo a linha */
 	$('#studentQuotaAjaxTable').dataTable().fnDeleteRow( document.getElementById("tr_<%=@student_quota.id%>"));		
   $('#editStudentQuotaModal').modal('hide');

@@ -11,7 +11,11 @@ SelecaoAdmin::Engine.routes.draw do
   resources :drawings
   resources :enrollments_enrolleds
   resources :enrolled_survey_answers
-  resources :enrolleds
+  resources :enrolleds do
+    collection do 
+      get 'user'
+    end
+  end
   resources :online_lecture_codes
   resources :student_quotas
   resources :lectures
@@ -33,6 +37,9 @@ SelecaoAdmin::Engine.routes.draw do
   resources :announcements do
     resources :enrollments do
       collection { post :import_scores }
+      collection do
+        get "enrolleds"
+      end
     end    
   end
   

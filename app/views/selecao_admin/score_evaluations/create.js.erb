@@ -1,8 +1,6 @@
 <%- if @score_evaluation.errors.any? %>
-  console.log('Error');
   $('#newScoreEvaluationModal').html('<%= escape_javascript(render('form')) %>');
 <%- else %>
-	console.log('Created');
   $('#new_score_evaluation_modal').modal('hide');
 	var addId = $('#scoreEvaluationAjaxTable').dataTable().fnAddData( [
 		"<%=escape_javascript(link_to @score_evaluation.id, score_evaluation_path(@score_evaluation))%>",

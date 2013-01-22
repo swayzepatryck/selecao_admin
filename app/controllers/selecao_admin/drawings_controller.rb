@@ -3,7 +3,8 @@ include SelecaoAdmin::DrawingsHelper
 
 module SelecaoAdmin
   class DrawingsController < ApplicationController
-    layout 'selecao_admin/no_sidebar'
+  
+    layout 'selecao_admin/application'
     # GET /drawings
     # GET /drawings.json
     def index

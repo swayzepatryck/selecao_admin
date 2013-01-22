@@ -1,8 +1,6 @@
 <%- if @announcement.errors.any? %>
-  console.log('Error');
   $('#newAnnouncementModal').html('<%= escape_javascript(render('form')) %>');
 <%- else %>
-  console.log('Created');
   $('#new_announcement_modal').modal('hide');
 	var addId = $('#announcementAjaxTable').dataTable().fnAddData( [
 		"<%=escape_javascript(link_to @announcement.id, announcement_path(@announcement))%>",

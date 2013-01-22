@@ -13,8 +13,8 @@
 				<div class="control-group">				
 						<%= f.label :student_quotas, :class => 'control-label' %>
 						<div class="controls">		
-							<%= (f.collection_select :student_quota_ids, SelecaoAdmin::StudentQuota.all, :id, :active_and_name, {:prompt => true}, {:multiple=>true, :class => 'span4', :"data-placeholder"=> t("validation.chosen.text_multiple"), :"data-no_results_text" => t("validation.chosen.no_results_match")}) if action_name == 'edit' %>	    	
-							<%= (f.collection_select :student_quota_ids, SelecaoAdmin::StudentQuota.order(:title).where(:active => true), :id, :title, {:prompt => true}, {:multiple=>true, :class => 'span4', :"data-placeholder"=> t("validation.chosen.text_multiple"), :"data-no_results_text" => t("validation.chosen.no_results_match")}) if action_name == 'new' %>	    	
+							<%= (f.collection_select :student_quota_ids, SelecaoAdmin::StudentQuota.all, :id, :id_active_and_name, {:prompt => true}, {:multiple=>true, :class => 'span4', :"data-placeholder"=> t("validation.chosen.text_multiple"), :"data-no_results_text" => t("validation.chosen.no_results_match")}) if action_name == 'edit' %>	    	
+							<%= (f.collection_select :student_quota_ids, SelecaoAdmin::StudentQuota.order(:title).where(:active => true), :id, :id_and_title, {:prompt => true}, {:multiple=>true, :class => 'span4', :"data-placeholder"=> t("validation.chosen.text_multiple"), :"data-no_results_text" => t("validation.chosen.no_results_match")}) if action_name == 'new' %>	    	
 							<%= show_multiple_error_messages(f, :student_quotas) %>
 						</div>
 			  </div>

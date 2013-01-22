@@ -22,8 +22,12 @@ module SelecaoAdmin
       "(#{self.abbreviation}) - #{self.title}"
     end
     
-    def active_and_name
-      "#{self.active_title} - #{self.abbreviation} - #{self.title}"
+    def id_and_title
+      "(#{self.id}) - #{self.title}"
+    end
+    
+    def id_active_and_name
+      "#{self.id} # #{self.active_title} - #{self.abbreviation} - #{self.title}"
     end
     
     def active_title

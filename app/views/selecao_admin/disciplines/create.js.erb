@@ -1,8 +1,6 @@
 <%- if @discipline.errors.any? %>
-  console.log('Error');
   $('#disciplineModal').html('<%= escape_javascript(render('form')) %>');
 <%- else %>
-	console.log('Created');
   $('#new_discipline_modal').modal('hide');
 	var addId = $('#disciplineAjaxTable').dataTable().fnAddData( [
 		"<%=escape_javascript(link_to @discipline.id, discipline_path(@discipline))%>",

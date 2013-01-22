@@ -38,5 +38,156 @@
 
 	<% if @drawing.enrolleds.any? %>
 		<%= render :partial => 'drawing_enrolleds_show', :locals => {:object => @drawing} %>	
+	<% else %>	
+		<script type="text/javascript" charset="utf-8">		
+			//
+			//
+			// INSTITUTO FEDERAL DE BRASÍLIA - CAMPUS TAGUATINGA/REITORIA
+			// Autores: Antonielly Garcia Rodrigues, Alex Helder Cordeiro de Oliveira, Renato Carvalho de Souza 
+			// 2013/01/15 
+			//
+			//
+			
+			var enrolledIds = []
+			var vagas = 0
+			
+			jQuery(document).ready(function() {	
+				$.getJSON(
+				  '/selecao-admin/announcements/<%=@drawing.enrollment.announcement.id%>/enrollments/enrolleds.json?enrollment_id=<%=@drawing.enrollment_id%>',
+				  {id: $(this).val()},
+				  function(data){
+				    $.each(data, function(i, obj){
+							enrolledIds.push(obj);
+							vagas = vagas + 1;
+				 		})
+					}
+				);
+			});			
+		
+			function gereEImprimaResultado() {
+				var nomeCurso = '<%=@drawing.enrollment.short_title%>';
+				//var inscritos = document.sorteio.totalInscritos.value;
+				//var array = [];
+				var semente;
+				if(document.sorteio.sementeManual.checked) {
+					semente = document.sorteio.semente.value;
+				} else {
+					semente = new Date().getTime();
+				}
+				//var vagas = document.sorteio.vagas.value;
+				//var embaralhada = gereListaEmbaralhada(inscritos, semente);
+
+				var embaralhada = gereListaEmbaralhada(enrolledIds, semente);
+				//var pontoImpressao = //document.sorteio.textArea;
+
+				var pontoImpressao = document.getElementById('resultado');
+				imprimaResultado(nomeCurso, semente, embaralhada, vagas, pontoImpressao);
+			}
+
+			function gereListaEmbaralhada(inscritos, semente){
+				Math.seedrandom(semente);				
+				var consumida = new Array(inscritos.length);
+				var resultado = new Array(inscritos.length);
+				for(var i = 0; i < inscritos.length; i++) {
+					//consumida[i] = 1+i;
+					consumida[i] = inscritos[i];
+					resultado[i] = 0;
+				}
+				
+				for(var i = 0; i < inscritos.length; i++) {
+					var aleatorio = Math.floor(Math.random()*inscritos.length);
+					while(consumida[aleatorio] == 0) {
+						aleatorio = (1+aleatorio)%inscritos.length;
+					}
+					resultado[i] = consumida[aleatorio];
+					consumida[aleatorio] = 0;
+				}
+				
+				return resultado;				
+			}
+
+			function imprimaResultado(nomeCurso, semente, embaralhada, vagas, pontoImpressao) {
+				var conteudo = "";
+				conteudo += gereVisualDeCabecalhoDaLista(nomeCurso);
+				conteudo += gereVisualDeListaDeSorteados(embaralhada, vagas);
+				conteudo += gereVisualDeFim();
+				conteudo += gereVisualDeInformacoesTecnicas(semente);
+				$('#resultado').html(conteudo);
+			}
+
+			function gereVisualDeCabecalhoDaLista(nomeCurso){
+				return "<h3> Sorteio " + nomeCurso + "</h3>";
+			}
+
+			function gereVisualDeListaDeSorteados(lista, ultimaPosicao){
+				var conteudo = "<table class='table table-bordered table-striped'>";
+				conteudo += "<thead><th>Posição</th><th>CPF</th><th>Nome</th><th>Email</th><th>Telefones</th><th>Curso</th><th>Reserva de vagas</th></thead>";
+				conteudo += "<tbody>";
+				for(var i = 0; i < lista.length; i++){
+					conteudo += "<tr>";
+					conteudo += "<td>" + (i + 1) + "</td>"
+					conteudo += lista[i];
+					conteudo += "</tr>";					
+				}
+				conteudo += "</tbody>";
+				conteudo += "</table>";
+				return conteudo;
+			}
+
+			function gereVisualDeFim() {
+				return "<hr><b>FIM.</b>";
+			}
+
+			function gereVisualDeInformacoesTecnicas(semente) {
+				var conteudo = "<hr>";
+				conteudo += "<table class='table table-bordered table-striped'>";
+					conteudo += "<th colspan='2'>" + "Informações técnicas do sistema de sorteio" + "</th>";
+					conteudo += "<tr><td>platform:</td><td>" + navigator.platform + "</td>";
+					conteudo += "<tr><td>appName:</td><td>" + navigator.appName + "</td>";
+					conteudo += "<tr><td>appVersion:</td><td>" + navigator.appVersion + "</td>";
+					conteudo += "<tr><td>userAgent:</td><td>" + navigator.userAgent + "</td>";
+					conteudo += "<tr><td>Versão deste sistema de sorteio (javascript)</td><td>0.1.0</td>"
+					conteudo += "<tr><td>Semente utilizada:</td><td>" + semente + "</td>";
+				conteudo += "</table>";
+				$('#semente').val(semente);
+				return conteudo;
+			}
+			
+			$(document).ready(function () {
+				setTimeout(function() {
+				    $('#shuffle_fields_processing').slideUp(300).delay();
+						$("#shuffle_fields").slideUp(300).fadeIn(400);
+				}, 15000);				
+	    });
+		</script>
+		
+		<form name="sorteio" id="sorteio">
+			<fieldset id="embaralhar_inscritos" class="">
+				<h4>Embaralhar Inscritos</h4>
+				<hr>
+					
+					
+				<div id="shuffle_fields_processing">Carregando... Aguarde.</div>
+					
+					<div id="shuffle_control">
+						
+						<div id="shuffle_fields">	
+							<div class="span3" id="shuffle_button">
+								<input type="button" value="Embaralhar" class="btn btn-warning" onclick="gereEImprimaResultado()" data-loading-text="Loading...">											
+							</div>				
+							<div class="span5" id="seed_input">
+								<label class="checkbox">
+									<input type="checkbox" name="sementeManual" onclick="document.sorteio.semente.disabled = !this.checked;" class="checkbox">Inserir semente manualmente
+								</label>
+								<input type="text" name="semente" id="semente" disabled>			    												
+							</div>
+						</div>						
+					</div>
+				</fieldset>
+				<div id="resultado"></div>		
+				
+		</form>
+		
+		
 	<% end %>
 </div>

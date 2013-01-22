@@ -1,8 +1,6 @@
 <%- if @student_quota.errors.any? %>
-  console.log('Error');
   $('#newStudentQuotaModal').html('<%= escape_javascript(render('form')) %>');
 <%- else %>
-	console.log('Created');
   $('#new_student_quota_modal').modal('hide');
 	var addId = $('#studentQuotaAjaxTable').dataTable().fnAddData( [
 		"<%=escape_javascript(link_to @student_quota.id, student_quota_path(@student_quota))%>",

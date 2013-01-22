@@ -75,7 +75,7 @@ pt-BR:
       selecao_admin/enrollment: "Inscrição"
       selecao_admin/course: "Curso"
       selecao_admin/entry_process: "Processo Seletivo"
-      selecao_admin/score_evaluation: "Avaliações"
+      selecao_admin/score_evaluation: "Edição ENEM"
       selecao_admin/discipline: "Disciplina"      
       selecao_admin/survey: "Pesquisa"            
       selecao_admin/lecture: "Palestra"
@@ -195,7 +195,7 @@ pt-BR:
         entry_process_id: "Processo Seletivo"
         lecture_id: "Palestra"
         student_quotas: "Reservas de vagas"
-        score_evaluations: "Avaliações"
+        score_evaluations: "Nota ENEM"
         lecture_type: Tipo de palestra
         export_score_evaluation_unique_ids: "Exportar CPFs"
       selecao_admin/course:
@@ -217,7 +217,7 @@ pt-BR:
         created_at: "Registro criado em"
         updated_at: "Registro atualizado em"  
         student_quotas: "Reservas de Vaga"
-        score_evaluations: "Avaliações"
+        score_evaluations: "Nota ENEM"
         online_lecture: "Palestra Online"
       selecao_admin/score_evaluation:
         title: "Título"

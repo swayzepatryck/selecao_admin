@@ -8,5 +8,6 @@ ActiveSupport::Inflector.inflections do |inflect|
    inflect.irregular 'reserva de vaga', 'reservas de vaga'
    inflect.irregular 'publicação', 'publicações'   
    inflect.irregular 'presença em palestra', 'presenças em palestras'   
+   inflect.irregular 'edição ENEM', 'edições ENEM'   
 end
 

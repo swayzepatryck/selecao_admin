@@ -1,8 +1,6 @@
 <%- if @discipline.errors.any? %>
-  console.log('Error');
 	$("#editDisciplineModal").html("<%= escape_javascript(render 'form') %>")	
 <%- else %>
-  console.log('Atualizado');
 	/* Removendo a linha */
 	$('#disciplineAjaxTable').dataTable().fnDeleteRow( document.getElementById("tr_<%=@discipline.id%>"));		
   $('#editDisciplineModal').modal('hide');

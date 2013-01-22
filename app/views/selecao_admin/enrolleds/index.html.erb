@@ -23,59 +23,5 @@
 	  <tbody>
 	  </tbody>
 	</table>
-	
-
 </div>
 
-<%
-=begin
-%>
-
-<table class="table table-striped" id="enrolleds">
-	<thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= User.human_attribute_name(:name) %></th>
-      <th><%= User.human_attribute_name(:login) %></th>
-      <th><%= model_class.human_attribute_name(:birth_date) %></th>
-      <th><%= model_class.human_attribute_name(:genre_id) %></th>
-      <th><%= model_class.human_attribute_name(:marital_status_id) %></th>
-      <th><%= model_class.human_attribute_name(:id_card_number) %></th>
-      <th><%= model_class.human_attribute_name(:id_card_issuer) %></th>
-      <th><%= model_class.human_attribute_name(:fathers_name) %></th>
-      <th><%= model_class.human_attribute_name(:mothers_name) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @enrolleds.each do |enrolled| %>
-    	<tr id="tr_<%=enrolled.id%>">
-        <td><%= link_to enrolled.id, enrolled_path(enrolled) %></td>
-        <td><%= link_to enrolled.user.name, enrolled_path(enrolled) %></td>
-        <td><%= enrolled.user.login %></td>
-        <td><%=l enrolled.birth_date %></td>
-        <td><%= enrolled.genre.name %></td>
-        <td><%= enrolled.marital_status.title %></td>
-        <td><%= enrolled.id_card_number %></td>
-        <td><%= enrolled.id_card_issuer %></td>
-        <td><%= enrolled.fathers_name %></td>
-        <td><%= enrolled.mothers_name %></td>
-        <td>
-          <%= link_to edit_icon,
-                      edit_enrolled_path(enrolled), :class => 'btn btn-mini' %>
-          <%= link_to destroy_icon,
-                      enrolled_path(enrolled),
-                      :method => :delete,
-                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-                      :class => 'btn btn-mini btn-danger',
- 											:remote => true %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
-<%
-=end
-%>

@@ -101,6 +101,14 @@ module SelecaoAdmin
       redirect_to announcement_enrollment_path(params[:announcement_id],request.referrer.split('/').last), :notice => "Notas importadas com sucesso."
     end
     
+    def enrolleds
+      @enrolleds = SelecaoAdmin::EnrollmentEnrolled.where(:enrollment_id => params[:enrollment_id]).map {|ee| "<td>#{ee.enrolled.user.login}</td><td>#{ee.enrolled.user.name}</td><td>#{ee.enrolled.user.email}</td><td><ul>#{ee.enrolled.phones.map{|p| '<li>(' + p.prefix + ') ' + p.suffix + '</li>'}}</ul></td><td>#{ee.enrollment.course.name}</td><td>#{ee.student_quota.title}</td>"}
+      
+      respond_to do |format|
+        format.json { render :json => @enrolleds }        
+      end
+    end
+    
     
     private
     

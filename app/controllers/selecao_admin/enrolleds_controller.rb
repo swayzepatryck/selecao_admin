@@ -84,7 +84,16 @@ module SelecaoAdmin
         format.js
       end
     end
+    
+    def user
+      @result = Hash.new
+      @result[:name] = SelecaoAdmin::Enrolled.find(params[:enrolled_id]).user.name
 
+      respond_to do |format|
+        format.json {render :json => @result}
+      end
+    end
+    
     private
 
     def resolve_layout

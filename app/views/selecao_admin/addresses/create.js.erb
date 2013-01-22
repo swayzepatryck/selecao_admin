@@ -1,8 +1,6 @@
 <%- if @address.errors.any? %>
-  console.log('Error');
   $('#createAddressModal').html('<%= escape_javascript(render('form')) %>');
 <%- else %>
-  console.log('Created');
   $('#createAddressModal').modal('hide');
   $('#addressAjaxTable').append('<%= escape_javascript(render(@address)) %>');	
 <%- end %>

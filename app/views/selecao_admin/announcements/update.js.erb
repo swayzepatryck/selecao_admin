@@ -1,5 +1,4 @@
 <%- if @announcement.errors.any? %>
-  console.log('Error');
   $('#editAnnouncementModal').html('<%= escape_javascript(render('form')) %>');
 	$('#editAnnouncementModal').on('hidden', function () {
 		$('#editAnnouncementModal').remove();
@@ -9,7 +8,6 @@
 		$('#editAnnouncementModal').modal('hide');
 		window.location = "<%=announcements_path%>"
 	<% else %>
-		console.log('Updated');
 		/* Removendo a linha */
 		$('#announcementAjaxTable').dataTable().fnDeleteRow( document.getElementById("tr_<%=@announcement.id%>"));	
 	  $('#editAnnouncementModal').modal('hide');

@@ -3,7 +3,7 @@ module SelecaoAdmin
     belongs_to :enrollment
     belongs_to :employee, :class_name => 'User', :foreign_key => 'employee_id'
     
-    attr_accessible :publication_date, :publication_time, :employee_id, :enrollment_id, :drawing_student_quotas_attributes #:student_quotas_attributes
+    attr_accessible :publication_date, :publication_time, :employee_id, :enrollment_id, :drawing_student_quotas_attributes, :raffle_date, :raffle_time #:student_quotas_attributes
     
     has_many :drawing_enrolleds
     has_many :enrolleds, :through => :drawing_enrolleds, :order => 'selecao_admin_drawing_enrolleds.id'

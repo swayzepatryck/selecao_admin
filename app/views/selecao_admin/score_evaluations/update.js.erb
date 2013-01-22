@@ -1,8 +1,6 @@
 <%- if @score_evaluation.errors.any? %>
-  console.log('Error');
 	$("#editScoreEvaluationModal").html("<%= escape_javascript(render 'form') %>")	
 <%- else %>
-  console.log('Atualizado');
 	/* Removendo a linha */
 	$('#scoreEvaluationAjaxTable').dataTable().fnDeleteRow( document.getElementById("tr_<%=@score_evaluation.id%>"));		
   $('#editScoreEvaluationModal').modal('hide');

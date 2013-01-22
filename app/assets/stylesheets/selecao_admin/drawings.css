@@ -14,3 +14,40 @@
 .transferButton {
 	margin-top: -10px;
 }
+
+#embaralhar_inscritos {
+	background-color: #F3EFE0;
+} 
+
+#shuffle_button {
+	border: 1px solid #e4e1d3;
+	padding: 35px 38px 25px;
+	background-color: #fffbeb;
+	
+}
+
+#seed_input {
+	border: 1px solid #e4e1d3;
+	background-color: #fffbeb;
+	
+  margin-bottom: 20px;
+  margin-left: 4px;
+  padding-bottom: 16px;
+  padding-left: 23px;
+  padding-top: 7px;
+}
+
+#shuffle_control {
+	width: 800px;
+	margin-left: auto ;
+  margin-right: auto ;
+	
+}
+
+#shuffle_fields {
+	display: none;
+}
+
+#shuffle_fields_processing {
+	
+}

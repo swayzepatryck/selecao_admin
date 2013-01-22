@@ -15,20 +15,8 @@ module SelecaoAdmin
       }
     end
 
-  private
+    private
 
-=begin
-    def data
-      users.map do |user|
-        [ 
-          link_to(user.enrolled.id, user.enrolled), 
-          link_to(user.name, user.enrolled), 
-          user.login
-        ]
-      end
-    end
-=end
-  
     def data
       enrolleds.map do |enrolled|
         [ 
