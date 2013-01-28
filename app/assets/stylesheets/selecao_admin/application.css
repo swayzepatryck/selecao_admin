@@ -11,6 +11,10 @@
  *= require_tree .
 */
 
+#flash_message_modal {
+	padding: 20px;
+}
+
 label.message {
     background-color: #f2dede;
     border-radius: 3px 3px 3px 3px;

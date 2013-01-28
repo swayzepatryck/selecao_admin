@@ -54,11 +54,11 @@ module SelecaoAdmin
         if @student_quota.save
           format.html { redirect_to @student_quota, :notice => t('selecao_admin.flash_messages.successfully_created', :model => @student_quota.class.model_name.human) }
           format.json { render :json => @student_quota, :status => :created, :location => @student_quota }
-          format.js
+          format.js  
         else
           format.html { render :action => "new" }
           format.json { render :json => @student_quota.errors, :status => :unprocessable_entity }
-          format.js          
+          format.js 
         end
       end
     end

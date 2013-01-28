@@ -18,12 +18,13 @@
 	      <tr id="tr_<%=lecture_presence.id%>" class="<%= lecture_presence.attendance_lecture_presence_status_id == 2 ? 'success' : 'warning'  %>">
 	        <td><%= lecture_presence.try(:user) ? lecture_presence.user.name : "<<#{t('selecao_admin.general.not_registered')}>>" %></td>
 	        <td><%= lecture_presence.try(:user) ? lecture_presence.user.login : lecture_presence.enrolled_unique_id %></td>
-	        <td><%= lecture_presence.attendance_lecture_presence_status.title %></td>
+	        <td id="attendance_status_td_<%=lecture_presence.id%>"><%= lecture_presence.attendance_lecture_presence_status.title %></td>
 	        <td><%= lecture_presence.lecture.campus.name %></td>
 					<td>
 						<%= link_to (lecture_presence.attendance_lecture_presence_status_id == 1 ? t('selecao_admin.button.lecture_presence.check_presence') : t('selecao_admin.button.lecture_presence.uncheck_presence')),
 	                      lecture_path(@lecture, :lecture_presence_id => lecture_presence.id), 
 												:class => 'btn btn-mini',
+												:id => "attendance_status_button_#{lecture_presence.id}",
 												:remote => true %>
 	          
 					</td>

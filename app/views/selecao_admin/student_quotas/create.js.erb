@@ -1,5 +1,5 @@
 <%- if @student_quota.errors.any? %>
-  $('#newStudentQuotaModal').html('<%= escape_javascript(render('form')) %>');
+  $('#new_student_quota_modal').html('<%= escape_javascript(render('form')) %>');
 <%- else %>
   $('#new_student_quota_modal').modal('hide');
 	var addId = $('#studentQuotaAjaxTable').dataTable().fnAddData( [
@@ -10,4 +10,6 @@
 	]);	
  	var theNode = $('#studentQuotaAjaxTable').dataTable().fnSettings().aoData[addId[0]].nTr;
 	$(theNode).attr("id", "tr_<%=@student_quota.id%>");		
+	<% flash[:notice] = t('selecao_admin.flash_messages.successfully_created', :model => @student_quota.class.model_name.human) %>	
+	$('#modal_flash_message_modal').html('<%= escape_javascript(render('selecao_admin/shared/modal_flash_messages'))%>');			
 <%- end %>

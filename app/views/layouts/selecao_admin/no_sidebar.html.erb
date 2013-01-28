@@ -19,9 +19,11 @@
     </div>
 
 	<div class="container">
-		<%= show_flash_messages %>
-		<%= yield %>
+
+		<%= show_modal_flash_messages %>
 		
+		<%= yield %>
+
 		<hr>
 		<footer>
 			<p>&copy; IFB - <%= Time.now.year %></p>

@@ -9,7 +9,7 @@
   <dt><strong><%= User.human_attribute_name(:login) %>:</strong></dt>
   <dd><%=c @enrolled.user.login %></dd>
   <dt><strong><%= model_class.human_attribute_name(:birth_date) %>:</strong></dt>
-  <dd><%=c @enrolled.birth_date %></dd>
+  <dd><%=c l(@enrolled.birth_date) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:genre_id) %>:</strong></dt>
   <dd><%=c @enrolled.genre.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:marital_status_id) %>:</strong></dt>

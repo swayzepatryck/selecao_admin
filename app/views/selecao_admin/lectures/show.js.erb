@@ -1,9 +1,13 @@
 <% if @lecture_presence.attendance_lecture_presence_status_id == 2 %>
 	$(function() {
 		$('#tr_<%=@lecture_presence.id.to_s%>').addClass('success').removeClass('warning');
+		$('#attendance_status_button_<%=@lecture_presence.id%>').text("<%=t('selecao_admin.button.lecture_presence.uncheck_presence')%>");		
+		$('#attendance_status_td_<%=@lecture_presence.id%>').text("<%=@lecture_presence.attendance_lecture_presence_status.title%>");		
 	});
 <%  elsif  @lecture_presence.attendance_lecture_presence_status_id == 1 %>
 	$(function() {
 		$('#tr_<%=@lecture_presence.id.to_s%>').addClass('warning').removeClass('success');
+		$('#attendance_status_button_<%=@lecture_presence.id%>').text("<%=t('selecao_admin.button.lecture_presence.check_presence')%>");
+		$('#attendance_status_td_<%=@lecture_presence.id%>').text("<%=@lecture_presence.attendance_lecture_presence_status.title%>");
 	});
 <%  end %>

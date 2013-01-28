@@ -1,0 +1,25 @@
+ <% flash.each do |key, value| %>	
+   <div class="<%= flash_class(key) %> fade in"  style="margin-bottom: 0;">
+     <a href="#" data-dismiss="alert" class="close">×</a>
+     <%= value %>
+   </div>
+ <% end %>
+
+<% if flash.any? %>
+<script type="text/javascript" charset="utf-8">
+	$(function() { // wait for the DOM
+	    setTimeout(function () {
+	        var $modal = $('#modal_flash_message_modal'); // your selector; cache it; only query the DOM once!
+
+	        $modal.modal({
+						show: true,
+						backdrop: true
+					}); // show modal; this happens after 3 seconds 
+
+	        setTimeout(function () {
+	            $modal.modal('hide'); // hode modal; this happens after 8 seconds due to the nested timeouts
+	        }, 1500);    
+	    }, 100);
+	});
+</script>
+<% end %>
