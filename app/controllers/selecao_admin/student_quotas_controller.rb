@@ -11,6 +11,10 @@ module SelecaoAdmin
       respond_to do |format|
         format.html # index.html.erb
         format.json { render :json => @student_quotas }
+        format.pdf do 
+          pdf = ReservePlacesPdf.new(:reserve_places => @student_quota)
+          send_data pdf.render, :filename => "Relatorio reserva x Nº de inscritos #{Time.now}", :type => "application/pdf", :disposition => "inline"
+        end
       end
     end
   

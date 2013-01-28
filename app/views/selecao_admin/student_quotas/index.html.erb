@@ -7,7 +7,11 @@
 	<%= link_to 'Criar', "#", :class => "btn btn-primary", :id => "new_student_quota_modal_button"  %>
 	<%= link_to back_icon,
 	            SelecaoAdmin::path, :class => 'btn'  %>
+	<%= link_to "Relatório Reserva x Nº de inscritos", student_quotas_path(:format => "pdf"), :class => "btn btn pull-right"%>
 </div>
+<!-- <% SelecaoAdmin::EnrollmentEnrolled.new.number_of_quotas.each do |dado| %>
+<!-- 	<%= "#{dado.title} - #{dado.count}" %><br/>
+<% end %> --> 
 
 <table class="table table-striped" id="studentQuotaAjaxTable">
   <thead>
