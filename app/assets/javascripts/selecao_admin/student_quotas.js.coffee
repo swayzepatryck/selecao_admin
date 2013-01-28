@@ -27,4 +27,4 @@ jQuery(document).ready ->
 jQuery(document).ready ->
   $("#close_student_quota_modal").click ->
     $("#new_student_quota_modal").modal('hide')
-				
+

@@ -32,6 +32,15 @@ JSON.stringify = JSON.stringify || function (obj) {
     }
 };
 
+$('#fat-btn')
+    .click(function () {
+        var btn = $(this)
+        btn.button('loading')
+        setTimeout(function () {
+            btn.button('reset')
+        }, 3000)
+    });
+
 jQuery(function() {
   return $('form').on('click', '.remove_fields', function(event) {
     $(this).prev('input[type=hidden]').val('1');

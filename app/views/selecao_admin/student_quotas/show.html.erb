@@ -5,16 +5,16 @@
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @student_quota.title %></dd>
+  <dd id="student_quota_title"><%= @student_quota.title %></dd>
   <dt><strong><%= model_class.human_attribute_name(:abbreviation) %>:</strong></dt>
-  <dd><%= @student_quota.abbreviation %></dd>
+  <dd id="student_quota_abbreviation"><%= @student_quota.abbreviation %></dd>
 </dl>
 
 <div class="form-actions">
   <%= link_to back_icon,
               student_quotas_path, :class => 'btn'  %>
-  <%= link_to edit_icon,
-              edit_student_quota_path(@student_quota), :class => 'btn' %>
+		          <%= link_to edit_icon,
+		                      edit_student_quota_path(@student_quota), :class => 'btn', :remote => true %>
   <%= link_to destroy_icon,
               student_quotas_path(@student_quota),
               :method => 'delete',

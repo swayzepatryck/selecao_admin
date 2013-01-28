@@ -1,3 +1,9 @@
 <div class="modal hide fade" id="editStudentQuotaModal">
+	<script type="text/javascript" charset="utf-8">
+		$("#student_quota_button").click(function() {
+			$('input:submit').attr("disabled", true);	 				
+			$('.modal-body').prepend("<div class='processing_action'></div>");
+		});
+	</script>
 	<%= render :partial => 'form' %>
 </div>

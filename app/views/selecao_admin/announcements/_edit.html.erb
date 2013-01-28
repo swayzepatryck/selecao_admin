@@ -1,4 +1,9 @@
 <div class="modal hide fade" id="editAnnouncementModal">
+	<script type="text/javascript" charset="utf-8">
+		$("#student_quota_button").click(function() {
+			$("#editAnnouncementModal").modal('hide');
+		});
+	</script>
 	<%= render :partial => 'form' %>
 </div>
 

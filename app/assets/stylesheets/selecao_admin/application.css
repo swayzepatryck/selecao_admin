@@ -33,6 +33,17 @@ label.message {
 	background-color: #dddddd;
 }
 
+.processing_action {
+	width: 65px;
+	height: 65px;	
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: 15px;
+	
+	background-image: url('/assets/selecao_admin/350.gif');
+}
+
 .dataTables_processing {
 	border-radius: 5px;
 	position: absolute;
