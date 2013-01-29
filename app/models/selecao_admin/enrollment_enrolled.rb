@@ -11,5 +11,6 @@ module SelecaoAdmin
       SelecaoAdmin::EnrollmentEnrolled.find_by_sql("select sq.title, count(*) from selecao_admin_enrollment_enrolleds ee, selecao_admin_student_quotas sq where ee.student_quota_id = sq.id group by sq.title")
     end
     
+    
   end
 end

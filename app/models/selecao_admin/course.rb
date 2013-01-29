@@ -1,6 +1,6 @@
 module SelecaoAdmin
   class Course < ActiveRecord::Base
-     belongs_to :course_shift
+    belongs_to :course_shift
     belongs_to :course_situation
     belongs_to :campus
     attr_accessible :description, :info_link, :name, :course_shift_id, :course_situation_id, :campus_id, :course_code, :course_prerequisites_attributes, :goal
@@ -20,6 +20,10 @@ module SelecaoAdmin
     
     def short_title
       "#{self.course_code} - #{self.name}"
+    end
+    
+    def number_students_by_course
+      SelecaoAdmin::EnrollmentEnrolled.find_by_sql("select c.name, count(*) from selecao_admin_courses c, selecao_admin_enrollments e, selecao_admin_enrollment_enrolleds ee where ee.enrollment_id = e.id and e.course_id = c.id group by c.id, c.name order by count(*);")
     end
   end
 end

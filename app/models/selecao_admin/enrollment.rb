@@ -32,6 +32,9 @@ module SelecaoAdmin
     
     before_update :check_entry_process_mode
     
+    def count_enrollment_enrolleds
+      self.enrolleds.count
+    end
     
     def check_entry_process_mode
       if entry_process.entry_process_mode_id == 2

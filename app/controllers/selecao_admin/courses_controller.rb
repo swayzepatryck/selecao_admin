@@ -12,6 +12,10 @@ module SelecaoAdmin
       respond_to do |format|
         format.html # index.html.erb
         format.json { render :json => @courses }
+        format.pdf do 
+          pdf = CoursePdf.new(:courses => Course.order(:name))
+          send_data pdf.render, :filename => "Cursos x Nº de inscritos #{Time.now}", :type => "application/pdf", :disposition => "inline"
+        end
       end
     end
   

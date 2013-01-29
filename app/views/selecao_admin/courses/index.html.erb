@@ -9,6 +9,8 @@
 	            :class => 'btn btn-primary' %>
 	<%= link_to back_icon,
 	            SelecaoAdmin::path, :class => 'btn'  %>
+	<%= link_to "Curso x Nº de inscritos", courses_path(:format => "pdf"), :class => "btn btn pull-right"
+	%>
 </div>
 
 <table class="table table-striped" id="courseAjaxTable">
