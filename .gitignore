@@ -17,5 +17,6 @@ pickle-email-*.html
 
 .DS_Store
 
+*.lock
 config/database.yml
 config/initializers/omniauth.rb
