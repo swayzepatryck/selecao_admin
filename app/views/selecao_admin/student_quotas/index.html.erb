@@ -7,7 +7,8 @@
 	<%= link_to 'Criar', "#", :class => "btn btn-primary", :id => "new_student_quota_modal_button"  %>
 	<%= link_to back_icon,
 	            SelecaoAdmin::path, :class => 'btn'  %>
-	<%= link_to "Relatório Reserva x Nº de inscritos", student_quotas_path(:format => "pdf"), :class => "btn btn pull-right"%>
+	
+	<%= link_to t("activerecord.models.selecao_admin/report").pluralize, "#", :id => 'student_quota_reports_button', :class => "btn btn-inverse pull-right"%>
 </div>
 <!-- <% SelecaoAdmin::EnrollmentEnrolled.new.number_of_quotas.each do |dado| %>
 <!-- 	<%= "#{dado.title} - #{dado.count}" %><br/>
@@ -47,6 +48,10 @@
 
 <div id="new_student_quota_modal" class="modal hide fade" style="padding: 20px;">
   <%= render :partial => 'form' %>
+</div>
+
+<div id="student_quota_reports_modal" class="modal hide fade" style="padding: 20px;"> 
+	<%= render :partial => 'student_quota_reports' %>
 </div>
 
 

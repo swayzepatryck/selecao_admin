@@ -28,3 +28,11 @@ jQuery(document).ready ->
   $("#close_student_quota_modal").click ->
     $("#new_student_quota_modal").modal('hide')
 
+jQuery(document).ready ->
+  $("#student_quota_reports_button").click ->
+    $("#student_quota_reports_modal").modal(
+      show: true
+      backdrop: true
+      keyboard: true
+    )
+		

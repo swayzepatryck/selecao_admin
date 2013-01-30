@@ -89,7 +89,8 @@ pt-BR:
       selecao_admin/lecture_presence: "Presença em Palestra"
       selecao_admin/enrolled_score: "Nota"
       selecao_admin/enrollment_enrolled: "Inscrito"
-      selecao_admin/drawing_enrolled: "Sorteados"
+      selecao_admin/drawing_enrolled: "Sorteados"      
+      selecao_admin/report: "Relatório"
     attributes:
       selecao_admin/online_lecture_code:
         code_sequence: "Sequência"
