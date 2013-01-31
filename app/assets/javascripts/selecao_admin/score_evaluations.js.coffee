@@ -24,3 +24,11 @@ jQuery(document).ready ->
       backdrop: true
       keyboard: true
     )
+    
+jQuery(document).ready ->
+  $("#score_evaluation_reports_button").click ->
+    $("#score_evaluation_reports_modal").modal(
+      show: true
+      backdrop: true
+      keyboard: true
+    )    

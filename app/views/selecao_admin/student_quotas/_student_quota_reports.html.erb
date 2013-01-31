@@ -1,0 +1,21 @@
+<div class="modal-header"> 	
+	<%= link_to '×', '#', :class => 'close' %>
+	<h3 id="myModalLabel">Relatórios Reservas de Vagas</h3>
+</div>
+
+<div class="modal-body">
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th>Nome</th>
+	      <th>Arquivo</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	      <tr>
+	        <td class="report_title_td">Relatório Reserva x Nº de inscritos</td>
+	        <td><%= link_to image_tag('/assets/selecao_admin/pdf-icon.png'), student_quotas_path(:format => "pdf"), :target => "_new" %></td>
+	      </tr>
+	  </tbody>
+	</table>
+</div>

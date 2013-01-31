@@ -15,3 +15,11 @@ jQuery ->
 	      sPrevious: "Anterior"
 	      sNext: "Próximo"
 	      sLast: "Último"
+
+jQuery(document).ready ->
+  $("#survey_reports_button").click ->
+    $("#survey_reports_modal").modal(
+      show: true
+      backdrop: true
+      keyboard: true
+    )

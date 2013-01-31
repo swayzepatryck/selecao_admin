@@ -7,7 +7,12 @@
 	<%= link_to 'Criar', "#", :class => "btn btn-primary", :id => "new_student_quota_modal_button"  %>
 	<%= link_to back_icon,
 	            SelecaoAdmin::path, :class => 'btn'  %>
+<<<<<<< HEAD
 	<%= link_to [[I18n.t('selecao_admin.links.student_quota.reserve_report'), I18n.t('selecao_admin.links.student_quota.number_of_subscribers')]], student_quotas_path(:format => "pdf"), :class => "btn btn pull-right"%>
+=======
+	
+	<%= link_to t("activerecord.models.selecao_admin/report").pluralize, "#", :id => 'student_quota_reports_button', :class => "btn btn-inverse pull-right"%>
+>>>>>>> c7783109e8ed831360fbb553f4644229fd3a83e3
 </div>
 <!-- <% SelecaoAdmin::EnrollmentEnrolled.new.number_of_quotas.each do |dado| %>
 <!-- 	<%= "#{dado.title} - #{dado.count}" %><br/>
@@ -47,6 +52,10 @@
 
 <div id="new_student_quota_modal" class="modal hide fade" style="padding: 20px;">
   <%= render :partial => 'form' %>
+</div>
+
+<div id="student_quota_reports_modal" class="modal hide fade" style="padding: 20px;"> 
+	<%= render :partial => 'student_quota_reports' %>
 </div>
 
 

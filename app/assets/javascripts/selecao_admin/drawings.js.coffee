@@ -24,6 +24,14 @@ jQuery ->
 	      sPrevious: "Anterior"
 	      sNext: "Próximo"
 	      sLast: "Último"
+	      
+jQuery(document).ready ->
+  $("#drawing_reports_button").click ->
+    $("#drawing_reports_modal").modal(
+      show: true
+      backdrop: true
+      keyboard: true
+    )	      
 	
 # Processamento do Sorteio	
 # INSTITUTO FEDERAL DE BRASÍLIA - CAMPUS TAGUATINGA/REITORIA

@@ -7,6 +7,9 @@
 	<%= link_to t('.new', :default => t("helpers.links.new")), '#', :class => 'btn btn-primary', :id => 'new_announcement_modal_button'%>
 	<%= link_to back_icon,
 	            SelecaoAdmin::path, :class => 'btn'  %>
+	            
+    <%= link_to t("activerecord.models.selecao_admin/report").pluralize, "#", :id => 'announcement_reports_button', :class => "btn btn-inverse pull-right"%>	            
+	            
 </div>
 
 <table class="table table-striped" id="announcementAjaxTable">
@@ -46,5 +49,9 @@
 
 <div id="new_announcement_modal" class="modal hide fade" style="padding: 20px;">
     <%= render :partial => 'form' %>
+</div>
+
+<div id="announcement_reports_modal" class="modal hide fade" style="padding: 20px;">
+    <%= render :partial => 'announcement_reports' %>
 </div>
 

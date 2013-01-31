@@ -16,3 +16,10 @@ jQuery ->
 	      sNext: "Próximo"
 	      sLast: "Último"
 
+jQuery(document).ready ->
+  $("#campi_reports_button").click ->
+    $("#campi_reports_modal").modal(
+      show: true
+      backdrop: true
+      keyboard: true
+    )
