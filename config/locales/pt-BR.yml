@@ -1,5 +1,16 @@
 pt-BR:
   selecao_admin:
+    links:
+      student_quota:
+        reserve_report: "Relatório Reserva x "
+        number_of_subscribers: "Número de Inscritos"
+      courses:
+        course: "Curso x "
+        number_of_subscribers: "Número de Inscritos"
+      campi:
+        campus: "Campus x "
+        number_of_subscribers: "Número de Inscritos"
+        
     button:
       lecture_presence:
         check_presence: "Presente"
@@ -228,6 +239,10 @@ pt-BR:
         name: "Nome"        
         created_at: "Registro criado em"
         updated_at: "Registro atualizado em"  
-             
-        
+      selecao_admin/pdfs:      
+        number_of_subscribers: "Número de Inscritos" 
+        reserve_places: "Reserva de vagas"
+        course: "Curso"
+        campus: "Campus"
+        full_number: "Numero total"
       

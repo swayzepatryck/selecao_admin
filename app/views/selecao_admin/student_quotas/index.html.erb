@@ -7,7 +7,7 @@
 	<%= link_to 'Criar', "#", :class => "btn btn-primary", :id => "new_student_quota_modal_button"  %>
 	<%= link_to back_icon,
 	            SelecaoAdmin::path, :class => 'btn'  %>
-	<%= link_to "Relatório Reserva x Nº de inscritos", student_quotas_path(:format => "pdf"), :class => "btn btn pull-right"%>
+	<%= link_to [[I18n.t('selecao_admin.links.student_quota.reserve_report'), I18n.t('selecao_admin.links.student_quota.number_of_subscribers')]], student_quotas_path(:format => "pdf"), :class => "btn btn pull-right"%>
 </div>
 <!-- <% SelecaoAdmin::EnrollmentEnrolled.new.number_of_quotas.each do |dado| %>
 <!-- 	<%= "#{dado.title} - #{dado.count}" %><br/>

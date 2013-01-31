@@ -1,8 +1,8 @@
-class CoursePdf < Prawn::Document
+class NumberOfSubscribersPdf < Prawn::Document
   def initialize(params)
      super(:top_margin => 110, :page_layout => :landscape, :pagesize => "A4")
     #super()
-    @courses = params[:courses]
+    @subscribers = params[:subscribers]
     #header
     repeat(:all) do
       title
@@ -15,7 +15,7 @@ class CoursePdf < Prawn::Document
   
   def title
      font_size 24
-     draw_text [[I18n.t('selecao_admin.links.courses.course'), I18n.t('selecao_admin.links.courses.number_of_subscribers')]], :at => [200, 520], :style => :bold
+     draw_text [[I18n.t('selecao_admin.links.campi.campus'), I18n.t('selecao_admin.links.campi.number_of_subscribers')]], :at => [200, 520], :style => :bold
      
   end
   
@@ -35,10 +35,10 @@ class CoursePdf < Prawn::Document
   end
   
   def corpo
-    font_size 12
-    bounding_box ([100, 460], :width => 2200) do  
-    tabela = [[I18n.t('activerecord.attributes.selecao_admin/pdfs.course'), "Numero Total"]]
-    SelecaoAdmin::Course.new.number_students_by_course.each do |dado|
+    font_size 16
+    bounding_box ([190, 390], :width => 2200) do  
+    tabela = [[I18n.t('activerecord.attributes.selecao_admin/pdfs.campus'), I18n.t('activerecord.attributes.selecao_admin/pdfs.number_of_subscribers')]]
+    SelecaoAdmin::Campus.new.number_of_members_by_campus.each do |dado|
       tabela << ["#{dado.name}", "#{dado.count}"]
     end 
     

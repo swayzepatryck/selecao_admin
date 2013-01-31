@@ -15,7 +15,7 @@ class ReservePlacesPdf < Prawn::Document
   
   def title
      font_size 24
-     draw_text "Reserva de Vagas x Nº Total de Inscritos", :at => [150, 520], :style => :bold
+     draw_text [[I18n.t('selecao_admin.links.student_quota.reserve_report'), I18n.t('selecao_admin.links.student_quota.number_of_subscribers')]], :at => [150, 520], :style => :bold
      
   end
   
@@ -30,13 +30,13 @@ class ReservePlacesPdf < Prawn::Document
   end
   
   def logo
-    image "engines/selecao_admin/app/assets/images/logo-if.png", :at => [0,570], :width => 55, :height => 70
+    image "engines/selecao_admin/app/assets/images/selecao_admin/logo-if.png", :at => [0,570], :width => 55, :height => 70
     
   end
   
   def corpo
     font_size 12
-    tabela = [["Reserva", "Numero Total"]]
+    tabela = [[I18n.t('activerecord.attributes.selecao_admin/pdfs.number_of_subscribers'), I18n.t('activerecord.attributes.selecao_admin/pdfs.full_number')]]
     SelecaoAdmin::EnrollmentEnrolled.new.number_of_quotas.each do |dado|
       tabela << ["#{dado.title}", "#{dado.count}"]
     end 
