@@ -26,7 +26,6 @@ class CoursePdf < Prawn::Document
       #draw_text "ACADEMICO - IFB", :at => [350, -10], :style => :bold
       draw_text "Página #{i+1} de #{page_count}", :at => [645, -10]
     end
-
   end
   
   def logo

@@ -16,7 +16,6 @@ class NumberOfSubscribersPdf < Prawn::Document
   def title
      font_size 24
      draw_text [[I18n.t('selecao_admin.links.campi.campus'), I18n.t('selecao_admin.links.campi.number_of_subscribers')]], :at => [200, 520], :style => :bold
-     
   end
   
   def foot
