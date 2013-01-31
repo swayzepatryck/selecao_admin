@@ -7,6 +7,8 @@
 	<%= link_to 'Criar', "#", :class => "btn btn-primary", :id => 'new_score_evaluation_modal_button' %>
 	<%= link_to back_icon,
 	            SelecaoAdmin::path, :class => 'btn'  %>
+	            
+	 <%= link_to t("activerecord.models.selecao_admin/report").pluralize, "#", :id => 'score_evaluation_reports_button', :class => "btn btn-inverse pull-right"%>           
 </div>
 
 <table class="table table-striped" id="scoreEvaluationAjaxTable">
@@ -42,6 +44,10 @@
 
 <div id="new_score_evaluation_modal" class="modal hide fade" style="padding: 20px; max-height: 500px;">
   <%= render :partial => 'form' %>	
+</div>
+
+<div id="score_evaluation_reports_modal" class="modal hide fade" style="padding: 20px;">
+    <%= render :partial => 'score_evaluation_reports' %>
 </div>
 
 

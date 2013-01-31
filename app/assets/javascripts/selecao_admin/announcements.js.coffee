@@ -23,3 +23,11 @@ jQuery(document).ready ->
       backdrop: true
       keyboard: true
     )
+    
+jQuery(document).ready ->
+  $("#announcement_reports_button").click ->
+    $("#announcement_reports_modal").modal(
+      show: true
+      backdrop: true
+      keyboard: true
+    )
