@@ -11,8 +11,8 @@
 	<%= link_to back_icon,
 	            SelecaoAdmin::path, :class => 'btn'  %>
 	            
-	<%= link_to [[I18n.t('selecao_admin.links.courses.course'), I18n.t('selecao_admin.links.courses.number_of_subscribers')]], courses_path(:format => "pdf"), :class => "btn btn pull-right"%>
-	<%= link_to "Curso x Nº de inscritos", courses_path(:format => "pdf"), :class => "btn btn pull-right"	%>
+	<!-- <%= link_to [[I18n.t('selecao_admin.links.courses.course'), I18n.t('selecao_admin.links.courses.number_of_subscribers')]], courses_path(:format => "pdf"), :class => "btn btn pull-right"
+	%> -->
 	<%= link_to t("activerecord.models.selecao_admin/report").pluralize, "#", :id => 'course_reports_button', :class => "btn btn-inverse pull-right"%>
 </div>
 

@@ -35,7 +35,7 @@ class ReservePlacesPdf < Prawn::Document
   
   def corpo
     font_size 12
-    tabela = [[I18n.t('activerecord.attributes.selecao_admin/pdfs.number_of_subscribers'), I18n.t('activerecord.attributes.selecao_admin/pdfs.full_number')]]
+    tabela = [[I18n.t('activerecord.attributes.selecao_admin/pdfs.reserve_report'), I18n.t('activerecord.attributes.selecao_admin/pdfs.full_number')]]
     SelecaoAdmin::EnrollmentEnrolled.new.number_of_quotas.each do |dado|
       tabela << ["#{dado.title}", "#{dado.count}"]
     end 
