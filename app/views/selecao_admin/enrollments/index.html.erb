@@ -6,6 +6,9 @@
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_announcement_enrollment_path(params[:announcement_id]),
             :class => 'btn btn-primary' %>
+            
+<%= link_to t("activerecord.models.selecao_admin/report").pluralize, "#", :id => 'enrollment_reports_button', :class => "btn btn-inverse pull-right"%>
+            
 <hr>
 
 <table class="table table-striped" id="enrollmentAjaxTable">
@@ -51,5 +54,9 @@
 </table>
 
 <%= render :partial => 'selecao_admin/sidebars/announcement_enrollment' %>
+
+<div id="enrollment_reports_modal" class="modal hide fade" style="padding: 20px;">
+    <%= render :partial => 'enrollment_reports' %>
+</div>
 	
 

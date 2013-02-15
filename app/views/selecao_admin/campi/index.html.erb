@@ -10,6 +10,8 @@
 	<%= link_to back_icon,
 	            SelecaoAdmin::path, :class => 'btn'  %>
     <%= link_to [[I18n.t('selecao_admin.links.campi.campus'), I18n.t('selecao_admin.links.campi.number_of_subscribers')]], campi_path(:format => "pdf"), :class => "btn btn pull-right"%>
+    <%= link_to t("activerecord.models.selecao_admin/report").pluralize, "#", :id => 'campi_reports_button', :class => "btn btn-inverse pull-right"%> 
+
 </div>
 
 <table class="table table-striped" id="campusAjaxTable">
@@ -45,3 +47,6 @@
   </tbody>
 </table>
 
+<div id="campi_reports_modal" class="modal hide fade" style="padding: 20px;">
+    <%= render :partial => 'campi_reports' %>
+</div>
