@@ -10,6 +10,9 @@ pt-BR:
       campi:
         campus: "Campus x "
         number_of_subscribers: "Número de Inscritos"
+      enrollments:
+        research_report: "Relatório de Pesquisa"
+        title_search: "Título da Pesquisa"
         
     button:
       lecture_presence:
