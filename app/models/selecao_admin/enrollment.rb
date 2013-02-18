@@ -95,7 +95,10 @@ module SelecaoAdmin
     def remove_student_quotas     
       self.student_quotas.delete_all
     end  
-    
+  
+    def show_general_survey_report(survey_id)
+      
+    end    
     
   end
 end
