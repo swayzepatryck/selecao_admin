@@ -97,5 +97,7 @@ jQuery(document).ready ->
       show: true
       backdrop: true
       keyboard: true
-    ) 
-	
+    ).css
+      width: "auto"
+      "margin-left": ->
+        -($(this).width() / 2)

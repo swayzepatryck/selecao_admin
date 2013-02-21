@@ -11,7 +11,7 @@ pt-BR:
         campus: "Campus x "
         number_of_subscribers: "Número de Inscritos"
       enrollments:
-        research_report: "Relatório de Pesquisa"
+        research_report: "Relatório de Pesquisa x "
         title_search: "Título da Pesquisa"
         
     button:
@@ -248,4 +248,6 @@ pt-BR:
         reserve_places: "Reserva de vagas"
         course: "Curso"
         campus: "Campus"
-        full_number: "Numero total"      
+        full_number: "Numero total"     
+        research_report: "Relatório de Pesquisa "
+        title_search: "Título da Pesquisa" 

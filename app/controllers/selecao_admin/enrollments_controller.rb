@@ -12,6 +12,10 @@ module SelecaoAdmin
         format.html # index.html.erb
         format.csv { render :text => @enrollments.to_csv }
         format.json { render :json => @enrollments }
+        format.pdf do 
+          pdf = ReportAllResearchPdf.new(params)
+          send_data pdf.render, :filename => "Relatório de Pesquisa x Título da Pesquisa #{Time.now}", :type => "application/pdf", :disposition => "inline"
+        end
       end
     end
   
