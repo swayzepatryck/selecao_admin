@@ -3,6 +3,8 @@
   <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
 
+<%= link_to t("activerecord.models.selecao_admin/report").pluralize, "#", :id => 'enrollment_reports_button', :class => "btn btn-inverse pull-right"%>
+
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:announcement_id) %>:</strong></dt>
   <dd><%=c @enrollment.announcement.title %></dd>
@@ -17,6 +19,8 @@
 	<% if @enrollment.entry_process.entry_process_mode.id == 1 %>
 		<dt><strong><%= model_class.human_attribute_name(:score_evaluations) %>:</strong></dt>
 	  <dd>
+	  	
+	  	
 			<ul>
 				<% @enrollment.score_evaluations.each {|ee|%>
 					<li>
@@ -77,6 +81,8 @@
 <% end %>
 
 
-
+<div id="enrollment_reports_modal" class="modal hide fade" style="padding: 20px;">
+    <%= render :partial => 'enrollment_reports' %>
+</div>
 
 
