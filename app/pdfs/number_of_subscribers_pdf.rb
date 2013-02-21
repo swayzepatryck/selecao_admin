@@ -1,8 +1,8 @@
-class ReservePlacesPdf < Prawn::Document
+class NumberOfSubscribersPdf < Prawn::Document
   def initialize(params)
      super(:top_margin => 110, :page_layout => :landscape, :pagesize => "A4")
     #super()
-    @reserve_places = params[:reserve_places]
+    @subscribers = params[:subscribers]
     #header
     repeat(:all) do
       title
@@ -15,8 +15,7 @@ class ReservePlacesPdf < Prawn::Document
   
   def title
      font_size 24
-     draw_text [[I18n.t('selecao_admin.links.student_quota.reserve_report'), I18n.t('selecao_admin.links.student_quota.number_of_subscribers')]], :at => [150, 520], :style => :bold
-     
+     draw_text [[I18n.t('selecao_admin.links.campi.campus'), I18n.t('selecao_admin.links.campi.number_of_subscribers')]], :at => [200, 520], :style => :bold
   end
   
   def foot
@@ -26,6 +25,7 @@ class ReservePlacesPdf < Prawn::Document
       #draw_text "ACADEMICO - IFB", :at => [350, -10], :style => :bold
       draw_text "Página #{i+1} de #{page_count}", :at => [645, -10]
     end
+
   end
   
   def logo
@@ -34,12 +34,15 @@ class ReservePlacesPdf < Prawn::Document
   end
   
   def corpo
-    font_size 12
-    tabela = [[I18n.t('activerecord.attributes.selecao_admin/pdfs.reserve_report'), I18n.t('activerecord.attributes.selecao_admin/pdfs.full_number')]]
-    SelecaoAdmin::EnrollmentEnrolled.new.number_of_quotas.each do |dado|
-      tabela << ["#{dado.title}", "#{dado.count}"]
+    font_size 16
+    bounding_box ([190, 390], :width => 2200) do  
+    tabela = [[I18n.t('activerecord.attributes.selecao_admin/pdfs.campus'), I18n.t('activerecord.attributes.selecao_admin/pdfs.number_of_subscribers')]]
+    SelecaoAdmin::Campus.new.number_of_members_by_campus.each do |dado|
+      tabela << ["#{dado.name}", "#{dado.count}"]
     end 
     
     table(tabela, :header => true, :row_colors => ["CCCCCC", "FFFFFF"])
+    
+    end
   end
 end

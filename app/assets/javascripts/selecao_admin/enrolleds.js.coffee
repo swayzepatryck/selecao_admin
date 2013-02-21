@@ -23,5 +23,11 @@ jQuery ->
 		    sLast: "Último"
 		
 
-
+jQuery(document).ready ->
+  $("#enrolled_reports_button").click ->
+    $("#enrolled_reports_modal").modal(
+      show: true
+      backdrop: true
+      keyboard: true
+    )
 

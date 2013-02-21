@@ -16,7 +16,7 @@
 	  <dt><strong><%= model_class.human_attribute_name(:enrollment_id) %>:</strong></dt>
 	  <dd><%= @drawing.enrollment.short_title %></dd>
 	  <dt><strong><%= model_class.human_attribute_name(:employee_id) %>:</strong></dt>
-	  <dd><%= @drawing.employee.name %></dd>
+	  <dd><%= link_to User.find(@drawing.employee.id).name, "/users/#{@drawing.employee.id}" %></dd>
 		<hr>
 
 	  <dt><strong><%= SelecaoAdmin::Drawing.new.class.human_attribute_name(:number_of_vacancies)  %>:</strong></dt>

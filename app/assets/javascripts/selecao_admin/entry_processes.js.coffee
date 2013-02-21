@@ -22,3 +22,10 @@ jQuery ->
 	      sNext: "Próximo"
 	      sLast: "Último"
 
+jQuery(document).ready ->
+  $("#entry_processes_reports_button").click ->
+    $("#entry_processes_reports_modal").modal(
+      show: true
+      backdrop: true
+      keyboard: true
+    )

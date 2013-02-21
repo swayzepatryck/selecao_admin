@@ -15,7 +15,7 @@ class CoursePdf < Prawn::Document
   
   def title
      font_size 24
-     draw_text "Curso x Nº Total de Inscritos", :at => [150, 520], :style => :bold
+     draw_text [[I18n.t('selecao_admin.links.courses.course'), I18n.t('selecao_admin.links.courses.number_of_subscribers')]], :at => [200, 520], :style => :bold
      
   end
   
@@ -26,18 +26,17 @@ class CoursePdf < Prawn::Document
       #draw_text "ACADEMICO - IFB", :at => [350, -10], :style => :bold
       draw_text "Página #{i+1} de #{page_count}", :at => [645, -10]
     end
-
   end
   
   def logo
-    image "engines/selecao_admin/app/assets/images/logo-if.png", :at => [0,570], :width => 55, :height => 70
+    image "engines/selecao_admin/app/assets/images/selecao_admin/logo-if.png", :at => [0,570], :width => 55, :height => 70
     
   end
   
   def corpo
     font_size 12
     bounding_box ([100, 460], :width => 2200) do  
-    tabela = [["Curso", "Numero Total"]]
+    tabela = [[I18n.t('activerecord.attributes.selecao_admin/pdfs.course'), "Numero Total"]]
     SelecaoAdmin::Course.new.number_students_by_course.each do |dado|
       tabela << ["#{dado.name}", "#{dado.count}"]
     end 

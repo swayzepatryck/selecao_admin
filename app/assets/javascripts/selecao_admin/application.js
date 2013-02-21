@@ -32,6 +32,14 @@ JSON.stringify = JSON.stringify || function (obj) {
     }
 };
 
+
+jQuery(function() {
+	$('.close').click(function () {
+		$('.modal.in').modal('hide') 
+	});
+});
+
+
 $('#fat-btn')
     .click(function () {
         var btn = $(this)

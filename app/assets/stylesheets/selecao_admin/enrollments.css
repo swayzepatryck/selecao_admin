@@ -11,3 +11,8 @@
 #student_quotas fieldset {
 	background-color: #dddddd;
 }
+
+.enrollment_reports_button {
+	height: 48px;
+	width: 48px;
+}

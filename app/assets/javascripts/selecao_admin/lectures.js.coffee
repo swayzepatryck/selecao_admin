@@ -34,3 +34,11 @@ jQuery ->
 	
 jQuery ->
 	$('#lecture_campus_id').chosen();
+	
+jQuery(document).ready ->
+  $("#lecture_reports_button").click ->
+    $("#lecture_reports_modal").modal(
+      show: true
+      backdrop: true
+      keyboard: true
+    )

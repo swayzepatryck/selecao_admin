@@ -9,8 +9,9 @@
 	            :class => 'btn btn-primary' %>
 	<%= link_to back_icon,
 	            SelecaoAdmin::path, :class => 'btn'  %>
+	            
+	<%= link_to t("activerecord.models.selecao_admin/report").pluralize, "#", :id => 'lecture_reports_button', :class => "btn btn-inverse pull-right"%>            
 </div>
-
 
 <table class="table table-striped" id="onlineLectureAjaxTable">
   <thead>
@@ -45,3 +46,7 @@
     <% end %>
   </tbody>
 </table>
+
+<div id="lecture_reports_modal" class="modal hide fade" style="padding: 20px;">
+    <%= render :partial => 'lecture_reports' %>
+</div>

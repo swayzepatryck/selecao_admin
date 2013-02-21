@@ -3,14 +3,17 @@
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
 
+
 <div class="form-actions">
 	<%= link_to t('.new', :default => t("helpers.links.new")),
 	            new_course_path,
 	            :class => 'btn btn-primary' %>
 	<%= link_to back_icon,
 	            SelecaoAdmin::path, :class => 'btn'  %>
-	<%= link_to "Curso x Nº de inscritos", courses_path(:format => "pdf"), :class => "btn btn pull-right"
-	%>
+	            
+	<!-- <%= link_to [[I18n.t('selecao_admin.links.courses.course'), I18n.t('selecao_admin.links.courses.number_of_subscribers')]], courses_path(:format => "pdf"), :class => "btn btn pull-right"
+	%> -->
+	<%= link_to t("activerecord.models.selecao_admin/report").pluralize, "#", :id => 'course_reports_button', :class => "btn btn-inverse pull-right"%>
 </div>
 
 <table class="table table-striped" id="courseAjaxTable">
@@ -52,5 +55,7 @@
 
 <%= render :partial => 'selecao_admin/sidebars/dependecies', :locals => {:dependecies_model => SelecaoAdmin::Course}%>
 
-
+<div id="course_reports_modal" class="modal hide fade" style="padding: 20px;">
+    <%= render :partial => 'course_reports' %>
+</div>
 

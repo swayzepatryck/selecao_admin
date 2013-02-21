@@ -5,5 +5,7 @@ $("#editStudentQuotaModal").modal({
 	keyboard: true	
 }).on('hidden', function () {
 		$('#editStudentQuotaModal').remove();
+		$('.processing_action').remove();
+		$('input:submit').attr("disabled", false);	 	
 });
 

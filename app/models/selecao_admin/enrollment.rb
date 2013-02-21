@@ -84,7 +84,22 @@ module SelecaoAdmin
           enrolled_score.save!            
         end          
       end
-    end    
+    end
+    
+    def report_all_research(survey_id)
+      SelecaoAdmin::EnrolledSurveyAnswer.find_by_sql(%Q{
+       
+       select perguntas.question, opcoes_de_resposta.option, count(*)
+       from selecao_admin_enrolled_survey_answers respostas, selecao_admin_survey_question_options opcoes_de_resposta, selecao_admin_survey_questions perguntas, selecao_admin_surveys pesquisas                
+               where respostas.survey_question_option_id = opcoes_de_resposta.id 
+               and opcoes_de_resposta.survey_question_id = perguntas.id 
+               and pesquisas.id = #{survey_id}
+                       group by perguntas.id, perguntas.question, opcoes_de_resposta.option
+                               order by perguntas.id
+        
+      })      
+    end
+    
 
     private
     
@@ -94,8 +109,6 @@ module SelecaoAdmin
 
     def remove_student_quotas     
       self.student_quotas.delete_all
-    end  
-    
-    
+    end    
   end
 end
