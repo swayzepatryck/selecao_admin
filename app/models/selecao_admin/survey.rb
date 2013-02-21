@@ -18,5 +18,11 @@ module SelecaoAdmin
     def short_title
       "#{self.survey_code} - #{self.title}"
     end
+    
+    def show_general_survey_report(survey_id)
+      
+    end
+    
+    
   end
 end

@@ -1,8 +1,8 @@
-class ReporAllResearchPdf < Prawn::Document
+class ReportAllResearchPdf < Prawn::Document
   def initialize(params)
+    @survey_id = params[:survey_id]
      super(:top_margin => 110, :page_layout => :landscape, :pagesize => "A4")
     #super()
-    @report_all_research = params[:report_all_research]
     #header
     repeat(:all) do
       title
@@ -15,7 +15,7 @@ class ReporAllResearchPdf < Prawn::Document
   
   def title
      font_size 24
-     draw_text [[I18n.t('selecao_admin.links.enrollments.research_report'), I18n.t('selecao_admin.links.enrollments.title_search')]], :at => [150, 520], :style => :bold
+     draw_text [[I18n.t('selecao_admin.links.enrollments.research_report'), I18n.t('selecao_admin.links.enrollments.title_search')]], :at => [120, 520], :style => :bold
      
   end
   
@@ -35,11 +35,46 @@ class ReporAllResearchPdf < Prawn::Document
   
   def corpo
     font_size 12
-    tabela = [[I18n.t('activerecord.attributes.selecao_admin/pdfs.reserve_report'), I18n.t('activerecord.attributes.selecao_admin/pdfs.full_number')]]
-    SelecaoAdmin::EnrollmentEnrolled.new.number_of_quotas.each do |dado|
-      tabela << ["#{dado.title}", "#{dado.count}"]
-    end 
-    
-    table(tabela, :header => true, :row_colors => ["CCCCCC", "FFFFFF"])
+    bounding_box ([80, 470], :width => 2200) do 
+      #@title_option_count = [I18n.t('activerecord.attributes.selecao_admin/pdfs.research_report'), I18n.t('activerecord.attributes.selecao_admin/pdfs.title_search')]
+      option_by_question = nil
+      option_by_question = SelecaoAdmin::Enrollment.new.report_all_research(@survey_id).group_by { |p| p.question.to_s }
+      option_by_question.keys.sort.each_with_index do |question,indice|
+        text "#{indice + 1}. #{question }"
+        text " "
+        tabela = [["Opção", "Quantidade"]]
+          
+        option_by_question[question].each do |option|
+          tabela << ["#{option.option}", "#{option.count}"]
+        end
+          
+        table(tabela, :header => { :background_color => 'CC0000', :font_style => :bold, :colspan => 2 }, :row_colors => ["CCCCCC", "FFFFFF"]) do
+          columns(0).width = 500
+          #rows(0).borders = []
+        end
+        
+        move_down(20)
+        
+        #table([ ["A", {:content => "2x1", :colspan => 2}, "B"], [{:content => "1x2", :rowspan => 2}, "C", "D", "E"], [{:content => "2x2", :colspan => 2, :rowspan => 2}, "F"], ["G", "H"]])
+        
+        
+        # option_by_question = dado.option.group_by {|p| p.to_s}
+        # option_by_question.keys.sort.each do |question|
+          # tabela << ["#{question}"] 
+          # option_by_question[question].each do |option|
+            # option
+          # end  
+        # end  
+       # tabela << ["#{dado.question}"]
+       # dado.question.option.each
+       # data.option.questions.each do |question|
+       #   tabela << ["#{question}"]
+       # end
+      end 
+      
+      # table(tabela, :header => true, :row_colors => ["CCCCCC", "FFFFFF"]) do
+        # columns(0).width = 100
+      # end
+    end
   end
 end

@@ -1,6 +1,6 @@
 <div class="modal-header"> 	
 	<%= link_to '×', '#', :class => 'close' %>
-	<h3 id="myModalLabel">Relatórios de Inscrições</h3>
+	<h3 id="myModalLabel">Relatórios de todas as pesquisas</h3>
 </div>
 
 <div class="modal-body">
@@ -8,13 +8,18 @@
 	  <thead>
 	    <tr>
 	      <th>Nome</th>
+	      <th>Pesquisa</th>
 	      <th>Arquivo</th>
 	    </tr>
 	  </thead>
 	  <tbody>
 	      <tr>
-	        <td class="report_title_td"></td>
-	        <td></td>
+	      	<%= form_tag announcement_enrollments_path(:format => "pdf"), :method => :get do %>
+		        <td class="report_title_td">Relatório de Pesquisa x Título da Pesquisa</td>
+		        <td><%= select_tag "survey_id", options_from_collection_for_select(SelecaoAdmin::Survey.all, "id", "title") %></td>
+		        <td><%= image_submit_tag('/assets/selecao_admin/pdf-icon.png',:class => "enrollment_reports_button") %></td>
+		        <td></td>
+	        <% end %>
 	      </tr>
 	  </tbody>
 	</table>
